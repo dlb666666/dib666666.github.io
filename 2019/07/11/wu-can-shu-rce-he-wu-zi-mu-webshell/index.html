@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="无参数RCE和无字母webshell, 沉梦昂志">
     <meta name="description" content="无参数RCE和无字母webshell看了飘零师傅和p牛的博客做一些笔记
-无参数函数RCEeval($_GET[&amp;#39;code]&amp;#39;);即可getshell
+eval($_GET[&amp;#39;code]&amp;#39;);即可getshell
 如果存在正则限制
-if(&#39;;&#39; === preg_replace(&#39;/[^">
+if(&#39;;&#39; === preg_replace(&#39;/[^\W]+\((?">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -344,7 +344,7 @@ if(&#39;;&#39; === preg_replace(&#39;/[^">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        494
+                        489
                     </div>
                     
 
@@ -368,7 +368,7 @@ if(&#39;;&#39; === preg_replace(&#39;/[^">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="无参数RCE和无字母webshell"><a href="#无参数RCE和无字母webshell" class="headerlink" title="无参数RCE和无字母webshell"></a>无参数RCE和无字母webshell</h1><p>看了飘零师傅和p牛的博客做一些笔记</p>
-<h2 id="无参数函数RCE"><a href="#无参数函数RCE" class="headerlink" title="无参数函数RCE"></a>无参数函数RCE</h2><p><code>eval($_GET[&#39;code]&#39;)</code>;即可getshell</p>
+<p><code>eval($_GET[&#39;code]&#39;)</code>;即可getshell</p>
 <p>如果存在正则限制</p>
 <pre class=" language-php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">';'</span> <span class="token operator">===</span> <span class="token function">preg_replace</span><span class="token punctuation">(</span><span class="token string">'/[^\W]+\((?R)?\)/'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token function">eval</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -689,28 +689,22 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/11/hai/">
+                <a href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_3.jpg" class="responsive-img" alt="">
+                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="无参数RCE和无字母webshell">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">无参数RCE和无字母webshell</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            123123
-##123123
-#12312
-phpinfo();
-echo "hello world";
-var foo = 42;    // foo is a Number now
-var foo = "bar"; // foo is
+                            这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要
                         
                     </div>
                     <div class="publish-info">
@@ -719,12 +713,17 @@ var foo = "bar"; // foo is
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            John Doe
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Markdown/" class="post-category" target="_blank">
+                                    Markdown
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -842,7 +841,7 @@ var foo = "bar"; // foo is
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">598</span>
+                <span class="white-color">489</span>
             
 
             
