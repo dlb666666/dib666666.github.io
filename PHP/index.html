@@ -538,29 +538,32 @@
     
 
     
-        <link rel="stylesheet" href="/libs/gitment/gitment-default.css">
-<link rel="stylesheet" href="/css/gitment.css">
 
-<div class="gitment-card card" data-aos="fade-up">
-    <div id="gitment-content" class="card-content"></div>
+    
+        <div class="disqus-card card" data-aos="fade-up">
+    <div id="disqus_thread" class="card-content">
+        <noscript>Please enable JavaScript to view the
+            <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </div>
 </div>
 
-<script src="/libs/gitment/gitment.js"></script>
-<script>
-var gitment = new Gitment({
-    id: 'Thu Jul 11 2019 14:51:37 GMT+0800',
-    owner: 'dlb666666',
-    repo: 'dlb666666.github.io',
-    oauth: {
-        client_id: '0824f503712cf09722d2',
-        client_secret: '2ea12d08e9299b3c3590f326bced702557472ef5'
-    }
-});
+<script type="text/javascript">
+    disqus_config = function () {
+        this.page.url = 'http://ding0x0.top/PHP/index.html';
+        this.page.identifier = '/PHP/index.html';
+        this.page.title = 'PHP';
+    };
+    let disqus_shortname = '带头大哥';
 
-gitment.render('gitment-content');
+    (function () { // DON'T EDIT BELOW THIS LINE
+        let d = document, s = d.createElement('script');
+        // 如：s.src = 'https://blinkfox.disqus.com/embed.js';
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-    
-
     
 
     
