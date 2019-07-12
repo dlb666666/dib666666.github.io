@@ -348,14 +348,14 @@ sh -c &#34;$(wget https://raw.g">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        242
+                        1.9k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        11 分
                     </div>
                     
                 
@@ -388,8 +388,553 @@ autoload-Uzcompinit&&compinit-i #（确保 compinit 已加载或通过添加~/.z
 <pre class=" language-sh"><code class="language-sh">source ~/.zshrc</code></pre>
 <h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>发现其参数都可以智能提示，但是payload没有。看了源码没怎么看懂，但是看出来一种解决方案，虽然提示有点乱，但是还是有提示的。</p>
 <p>方法就是把你的<code>payload</code>添加到<code>~/.zsh/venom-cache</code>这个文件中下次再使用就有提示了。</p>
-<p><img src="_v_images/20190712224750084_1806.png" alt="blog_1"></p>
-
+<p><img src="_v_images/20190712231838103_19686.png" alt="blog_1"></p>
+<p>附上payload列表</p>
+<pre><code>aix/ppc/shell_bind_tcp
+aix/ppc/shell_find_port
+aix/ppc/shell_interact
+aix/ppc/shell_reverse_tcp
+android/meterpreter/reverse_http
+android/meterpreter/reverse_https
+android/meterpreter/reverse_tcp
+android/meterpreter_reverse_http
+android/meterpreter_reverse_https
+android/meterpreter_reverse_tcp
+android/shell/reverse_http
+android/shell/reverse_https
+android/shell/reverse_tcp
+apple_ios/aarch64/meterpreter_reverse_http
+apple_ios/aarch64/meterpreter_reverse_https
+apple_ios/aarch64/meterpreter_reverse_tcp
+apple_ios/aarch64/shell_reverse_tcp
+apple_ios/armle/meterpreter_reverse_http
+apple_ios/armle/meterpreter_reverse_https
+apple_ios/armle/meterpreter_reverse_tcp
+bsd/sparc/shell_bind_tcp
+bsd/sparc/shell_reverse_tcp
+bsd/vax/shell_reverse_tcp
+bsd/x64/exec
+bsd/x64/shell_bind_ipv6_tcp
+bsd/x64/shell_bind_tcp
+bsd/x64/shell_bind_tcp_small
+bsd/x64/shell_reverse_ipv6_tcp
+bsd/x64/shell_reverse_tcp
+bsd/x64/shell_reverse_tcp_small
+bsd/x86/exec
+bsd/x86/metsvc_bind_tcp
+bsd/x86/metsvc_reverse_tcp
+bsd/x86/shell/bind_ipv6_tcp
+bsd/x86/shell/bind_tcp
+bsd/x86/shell/find_tag
+bsd/x86/shell/reverse_ipv6_tcp
+bsd/x86/shell/reverse_tcp
+bsd/x86/shell_bind_tcp
+bsd/x86/shell_bind_tcp_ipv6
+bsd/x86/shell_find_port
+bsd/x86/shell_find_tag
+bsd/x86/shell_reverse_tcp
+bsd/x86/shell_reverse_tcp_ipv6
+bsdi/x86/shell/bind_tcp
+bsdi/x86/shell/reverse_tcp
+bsdi/x86/shell_bind_tcp
+bsdi/x86/shell_find_port
+bsdi/x86/shell_reverse_tcp
+cmd/mainframe/apf_privesc_jcl
+cmd/mainframe/bind_shell_jcl
+cmd/mainframe/generic_jcl
+cmd/mainframe/reverse_shell_jcl
+cmd/unix/bind_awk
+cmd/unix/bind_busybox_telnetd
+cmd/unix/bind_inetd
+cmd/unix/bind_lua
+cmd/unix/bind_netcat
+cmd/unix/bind_netcat_gaping
+cmd/unix/bind_netcat_gaping_ipv6
+cmd/unix/bind_nodejs
+cmd/unix/bind_perl
+cmd/unix/bind_perl_ipv6
+cmd/unix/bind_r
+cmd/unix/bind_ruby
+cmd/unix/bind_ruby_ipv6
+cmd/unix/bind_socat_udp
+cmd/unix/bind_stub
+cmd/unix/bind_zsh
+cmd/unix/generic
+cmd/unix/interact
+cmd/unix/reverse
+cmd/unix/reverse_awk
+cmd/unix/reverse_bash
+cmd/unix/reverse_bash_telnet_ssl
+cmd/unix/reverse_bash_udp
+cmd/unix/reverse_ksh
+cmd/unix/reverse_lua
+cmd/unix/reverse_ncat_ssl
+cmd/unix/reverse_netcat
+cmd/unix/reverse_netcat_gaping
+cmd/unix/reverse_nodejs
+cmd/unix/reverse_openssl
+cmd/unix/reverse_perl
+cmd/unix/reverse_perl_ssl
+cmd/unix/reverse_php_ssl
+cmd/unix/reverse_python
+cmd/unix/reverse_python_ssl
+cmd/unix/reverse_r
+cmd/unix/reverse_ruby
+cmd/unix/reverse_ruby_ssl
+cmd/unix/reverse_socat_udp
+cmd/unix/reverse_ssl_double_telnet
+cmd/unix/reverse_stub
+cmd/unix/reverse_zsh
+cmd/windows/adduser
+cmd/windows/bind_lua
+cmd/windows/bind_perl
+cmd/windows/bind_perl_ipv6
+cmd/windows/bind_ruby
+cmd/windows/download_eval_vbs
+cmd/windows/download_exec_vbs
+cmd/windows/generic
+cmd/windows/powershell_bind_tcp
+cmd/windows/powershell_reverse_tcp
+cmd/windows/reverse_lua
+cmd/windows/reverse_perl
+cmd/windows/reverse_powershell
+cmd/windows/reverse_ruby
+firefox/exec
+firefox/shell_bind_tcp
+firefox/shell_reverse_tcp
+generic/custom
+generic/debug_trap
+generic/shell_bind_tcp
+generic/shell_reverse_tcp
+generic/tight_loop
+java/jsp_shell_bind_tcp
+java/jsp_shell_reverse_tcp
+java/meterpreter/bind_tcp
+java/meterpreter/reverse_http
+java/meterpreter/reverse_https
+java/meterpreter/reverse_tcp
+java/shell/bind_tcp
+java/shell/reverse_tcp
+java/shell_reverse_tcp
+linux/aarch64/meterpreter/reverse_tcp
+linux/aarch64/meterpreter_reverse_http
+linux/aarch64/meterpreter_reverse_https
+linux/aarch64/meterpreter_reverse_tcp
+linux/aarch64/shell/reverse_tcp
+linux/aarch64/shell_reverse_tcp
+linux/armbe/meterpreter_reverse_http
+linux/armbe/meterpreter_reverse_https
+linux/armbe/meterpreter_reverse_tcp
+linux/armbe/shell_bind_tcp
+linux/armle/adduser
+linux/armle/exec
+linux/armle/meterpreter/bind_tcp
+linux/armle/meterpreter/reverse_tcp
+linux/armle/meterpreter_reverse_http
+linux/armle/meterpreter_reverse_https
+linux/armle/meterpreter_reverse_tcp
+linux/armle/shell/bind_tcp
+linux/armle/shell/reverse_tcp
+linux/armle/shell_bind_tcp
+linux/armle/shell_reverse_tcp
+linux/mips64/meterpreter_reverse_http
+linux/mips64/meterpreter_reverse_https
+linux/mips64/meterpreter_reverse_tcp
+linux/mipsbe/exec
+linux/mipsbe/meterpreter/reverse_tcp
+linux/mipsbe/meterpreter_reverse_http
+linux/mipsbe/meterpreter_reverse_https
+linux/mipsbe/meterpreter_reverse_tcp
+linux/mipsbe/reboot
+linux/mipsbe/shell/reverse_tcp
+linux/mipsbe/shell_bind_tcp
+linux/mipsbe/shell_reverse_tcp
+linux/mipsle/exec
+linux/mipsle/meterpreter/reverse_tcp
+linux/mipsle/meterpreter_reverse_http
+linux/mipsle/meterpreter_reverse_https
+linux/mipsle/meterpreter_reverse_tcp
+linux/mipsle/reboot
+linux/mipsle/shell/reverse_tcp
+linux/mipsle/shell_bind_tcp
+linux/mipsle/shell_reverse_tcp
+linux/ppc/meterpreter_reverse_http
+linux/ppc/meterpreter_reverse_https
+linux/ppc/meterpreter_reverse_tcp
+linux/ppc/shell_bind_tcp
+linux/ppc/shell_find_port
+linux/ppc/shell_reverse_tcp
+linux/ppc64/shell_bind_tcp
+linux/ppc64/shell_find_port
+linux/ppc64/shell_reverse_tcp
+linux/ppc64le/meterpreter_reverse_http
+linux/ppc64le/meterpreter_reverse_https
+linux/ppc64le/meterpreter_reverse_tcp
+linux/ppce500v2/meterpreter_reverse_http
+linux/ppce500v2/meterpreter_reverse_https
+linux/ppce500v2/meterpreter_reverse_tcp
+linux/x64/exec
+linux/x64/meterpreter/bind_tcp
+linux/x64/meterpreter/reverse_tcp
+linux/x64/meterpreter_reverse_http
+linux/x64/meterpreter_reverse_https
+linux/x64/meterpreter_reverse_tcp
+linux/x64/shell/bind_tcp
+linux/x64/shell/reverse_tcp
+linux/x64/shell_bind_ipv6_tcp
+linux/x64/shell_bind_tcp
+linux/x64/shell_bind_tcp_random_port
+linux/x64/shell_find_port
+linux/x64/shell_reverse_ipv6_tcp
+linux/x64/shell_reverse_tcp
+linux/x86/adduser
+linux/x86/chmod
+linux/x86/exec
+linux/x86/meterpreter/bind_ipv6_tcp
+linux/x86/meterpreter/bind_ipv6_tcp_uuid
+linux/x86/meterpreter/bind_nonx_tcp
+linux/x86/meterpreter/bind_tcp
+linux/x86/meterpreter/bind_tcp_uuid
+linux/x86/meterpreter/find_tag
+linux/x86/meterpreter/reverse_ipv6_tcp
+linux/x86/meterpreter/reverse_nonx_tcp
+linux/x86/meterpreter/reverse_tcp
+linux/x86/meterpreter/reverse_tcp_uuid
+linux/x86/meterpreter_reverse_http
+linux/x86/meterpreter_reverse_https
+linux/x86/meterpreter_reverse_tcp
+linux/x86/metsvc_bind_tcp
+linux/x86/metsvc_reverse_tcp
+linux/x86/read_file
+linux/x86/shell/bind_ipv6_tcp
+linux/x86/shell/bind_ipv6_tcp_uuid
+linux/x86/shell/bind_nonx_tcp
+linux/x86/shell/bind_tcp
+linux/x86/shell/bind_tcp_uuid
+linux/x86/shell/find_tag
+linux/x86/shell/reverse_ipv6_tcp
+linux/x86/shell/reverse_nonx_tcp
+linux/x86/shell/reverse_tcp
+linux/x86/shell/reverse_tcp_uuid
+linux/x86/shell_bind_ipv6_tcp
+linux/x86/shell_bind_tcp
+linux/x86/shell_bind_tcp_random_port
+linux/x86/shell_find_port
+linux/x86/shell_find_tag
+linux/x86/shell_reverse_tcp
+linux/x86/shell_reverse_tcp_ipv6
+linux/zarch/meterpreter_reverse_http
+linux/zarch/meterpreter_reverse_https
+linux/zarch/meterpreter_reverse_tcp
+mainframe/shell_reverse_tcp
+multi/meterpreter/reverse_http
+multi/meterpreter/reverse_https
+netware/shell/reverse_tcp
+nodejs/shell_bind_tcp
+nodejs/shell_reverse_tcp
+nodejs/shell_reverse_tcp_ssl
+osx/armle/execute/bind_tcp
+osx/armle/execute/reverse_tcp
+osx/armle/shell/bind_tcp
+osx/armle/shell/reverse_tcp
+osx/armle/shell_bind_tcp
+osx/armle/shell_reverse_tcp
+osx/armle/vibrate
+osx/ppc/shell/bind_tcp
+osx/ppc/shell/find_tag
+osx/ppc/shell/reverse_tcp
+osx/ppc/shell_bind_tcp
+osx/ppc/shell_reverse_tcp
+osx/x64/dupandexecve/bind_tcp
+osx/x64/dupandexecve/reverse_tcp
+osx/x64/exec
+osx/x64/meterpreter/bind_tcp
+osx/x64/meterpreter/reverse_tcp
+osx/x64/meterpreter_reverse_http
+osx/x64/meterpreter_reverse_https
+osx/x64/meterpreter_reverse_tcp
+osx/x64/say
+osx/x64/shell_bind_tcp
+osx/x64/shell_find_tag
+osx/x64/shell_reverse_tcp
+osx/x86/bundleinject/bind_tcp
+osx/x86/bundleinject/reverse_tcp
+osx/x86/exec
+osx/x86/isight/bind_tcp
+osx/x86/isight/reverse_tcp
+osx/x86/shell_bind_tcp
+osx/x86/shell_find_port
+osx/x86/shell_reverse_tcp
+osx/x86/vforkshell/bind_tcp
+osx/x86/vforkshell/reverse_tcp
+osx/x86/vforkshell_bind_tcp
+osx/x86/vforkshell_reverse_tcp
+php/bind_perl
+php/bind_perl_ipv6
+php/bind_php
+php/bind_php_ipv6
+php/download_exec
+php/exec
+php/meterpreter/bind_tcp
+php/meterpreter/bind_tcp_ipv6
+php/meterpreter/bind_tcp_ipv6_uuid
+php/meterpreter/bind_tcp_uuid
+php/meterpreter/reverse_tcp
+php/meterpreter/reverse_tcp_uuid
+php/meterpreter_reverse_tcp
+php/reverse_perl
+php/reverse_php
+php/shell_findsock
+python/meterpreter/bind_tcp
+python/meterpreter/bind_tcp_uuid
+python/meterpreter/reverse_http
+python/meterpreter/reverse_https
+python/meterpreter/reverse_tcp
+python/meterpreter/reverse_tcp_ssl
+python/meterpreter/reverse_tcp_uuid
+python/meterpreter_bind_tcp
+python/meterpreter_reverse_http
+python/meterpreter_reverse_https
+python/meterpreter_reverse_tcp
+python/shell_bind_tcp
+python/shell_reverse_tcp
+python/shell_reverse_tcp_ssl
+python/shell_reverse_udp
+r/shell_bind_tcp
+r/shell_reverse_tcp
+ruby/shell_bind_tcp
+ruby/shell_bind_tcp_ipv6
+ruby/shell_reverse_tcp
+ruby/shell_reverse_tcp_ssl
+solaris/sparc/shell_bind_tcp
+solaris/sparc/shell_find_port
+solaris/sparc/shell_reverse_tcp
+solaris/x86/shell_bind_tcp
+solaris/x86/shell_find_port
+solaris/x86/shell_reverse_tcp
+tty/unix/interact
+windows/adduser
+windows/dllinject/bind_hidden_ipknock_tcp
+windows/dllinject/bind_hidden_tcp
+windows/dllinject/bind_ipv6_tcp
+windows/dllinject/bind_ipv6_tcp_uuid
+windows/dllinject/bind_named_pipe
+windows/dllinject/bind_nonx_tcp
+windows/dllinject/bind_tcp
+windows/dllinject/bind_tcp_rc4
+windows/dllinject/bind_tcp_uuid
+windows/dllinject/find_tag
+windows/dllinject/reverse_hop_http
+windows/dllinject/reverse_http
+windows/dllinject/reverse_http_proxy_pstore
+windows/dllinject/reverse_ipv6_tcp
+windows/dllinject/reverse_nonx_tcp
+windows/dllinject/reverse_ord_tcp
+windows/dllinject/reverse_tcp
+windows/dllinject/reverse_tcp_allports
+windows/dllinject/reverse_tcp_dns
+windows/dllinject/reverse_tcp_rc4
+windows/dllinject/reverse_tcp_rc4_dns
+windows/dllinject/reverse_tcp_uuid
+windows/dllinject/reverse_winhttp
+windows/dns_txt_query_exec
+windows/download_exec
+windows/exec
+windows/format_all_drives
+windows/loadlibrary
+windows/messagebox
+windows/meterpreter/bind_hidden_ipknock_tcp
+windows/meterpreter/bind_hidden_tcp
+windows/meterpreter/bind_ipv6_tcp
+windows/meterpreter/bind_ipv6_tcp_uuid
+windows/meterpreter/bind_named_pipe
+windows/meterpreter/bind_nonx_tcp
+windows/meterpreter/bind_tcp
+windows/meterpreter/bind_tcp_rc4
+windows/meterpreter/bind_tcp_uuid
+windows/meterpreter/find_tag
+windows/meterpreter/reverse_hop_http
+windows/meterpreter/reverse_http
+windows/meterpreter/reverse_http_proxy_pstore
+windows/meterpreter/reverse_https
+windows/meterpreter/reverse_https_proxy
+windows/meterpreter/reverse_ipv6_tcp
+windows/meterpreter/reverse_named_pipe
+windows/meterpreter/reverse_nonx_tcp
+windows/meterpreter/reverse_ord_tcp
+windows/meterpreter/reverse_tcp
+windows/meterpreter/reverse_tcp_allports
+windows/meterpreter/reverse_tcp_dn
+windows/meterpreter/reverse_tcp_rc4
+windows/meterpreter/reverse_tcp_rc4_dns
+windows/meterpreter/reverse_tcp_uuid
+windows/meterpreter/reverse_winhttp
+windows/meterpreter/reverse_winhttps
+windows/meterpreter_bind_named_pipe
+windows/meterpreter_bind_tcp
+windows/meterpreter_reverse_http
+windows/meterpreter_reverse_https
+windows/meterpreter_reverse_ipv6_tcp
+windows/meterpreter_reverse_tcp
+windows/metsvc_bind_tcp
+windows/metsvc_reverse_tcp
+windows/patchupdllinject/bind_hidden_ipknock_tcp
+windows/patchupdllinject/bind_hidden_tcp
+windows/patchupdllinject/bind_ipv6_tcp
+windows/patchupdllinject/bind_ipv6_tcp_uuid
+windows/patchupdllinject/bind_named_pipe
+windows/patchupdllinject/bind_nonx_tcp
+windows/patchupdllinject/bind_tcp
+windows/patchupdllinject/bind_tcp_rc4
+windows/patchupdllinject/bind_tcp_uuid
+windows/patchupdllinject/find_tag
+windows/patchupdllinject/reverse_ipv6_tcp
+windows/patchupdllinject/reverse_nonx_tcp
+windows/patchupdllinject/reverse_ord_tcp
+windows/patchupdllinject/reverse_tcp
+windows/patchupdllinject/reverse_tcp_allports
+windows/patchupdllinject/reverse_t
+windows/patchupdllinject/reverse_tcp_rc4
+windows/patchupdllinject/reverse_tcp_rc4_dns
+windows/patchupdllinject/reverse_tcp_uuid
+windows/patchupmeterpreter/bind_hidden_ipknock_tcp
+windows/patchupmeterpreter/bind_hidden_tcp
+windows/patchupmeterpreter/bind_ipv6_tcp
+windows/patchupmeterpreter/bind_ipv6_tcp_uuid
+windows/patchupmeterpreter/bind_named_pipe
+windows/patchupmeterpreter/bind_nonx_tcp
+windows/patchupmeterpreter/bind_tcp
+windows/patchupmeterpreter/bind_tcp_rc4
+windows/patchupmeterpreter/bind_tcp_uuid
+windows/patchupmeterpreter/find_tag
+windows/patchupmeterpreter/reverse_ipv6_tcp
+windows/patchupmeterpreter/reverse_nonx_tcp
+windows/patchupmeterpreter/reverse_ord_tcp
+windows/patchupmeterpreter/reverse_tcp
+windows/patchupmeterpreter/reverse_tcp_allports
+windows/patchupmeterpreter/reverse_tcp_dns
+windows/patchupmeterpreter/reverse_tcp_rc4
+windows/patchupmeterpreter/reverse_tcp_rc4_dns
+windows/patchupmeterpreter/reverse_tcp_uuid
+windows/powershell_bind_tcp
+windows/powershell_reverse_tcp
+windows/shell/bind_hidden_ipknock_tcp
+windows/shell/bind_hidden_tcp
+windows/shell/bind_ipv6_tcp
+windows/shell/bind_ipv6_tcp_uuid
+windows/shell/bind_named_pipe
+windows/shell/bind_nonx_tcp
+windows/shell/bind_tcp
+windows/shell/bind_tcp_rc4
+windows/shell/bind_tcp_uuid
+windows/shell/find_tag
+windows/shell/reverse_ipv6_tcp
+windows/shell/reverse_nonx_tcp
+windows/shell/reverse_ord_tcp
+windows/shell/reverse_tcp
+windows/shell/reverse_tcp_allports
+windows/shell/reverse_tcp_dns
+windows/shell/reverse_tcp_rc4
+windows/shell/reverse_tcp_rc4_dns
+windows/shell/reverse_tcp_uuid
+windows/shell/reverse_udp
+windows/shell_bind_tcp
+windows/shell_bind_tcp_xpfw
+windows/shell_hidden_bind_tcp
+windows/shell_reverse_tcp
+windows/speak_pwned
+windows/upexec/bind_hidden_ipknock_tcp
+windows/upexec/bind_hidden_tcp
+windows/upexec/bind_ipv6_tcp
+windows/upexec/bind_ipv6_tcp_uuid
+windows/upexec/bind_named_pipe
+windows/upexec/bind_nonx_tcp
+windows/upexec/bind_tcp
+windows/upexec/bind_tcp_rc4
+windows/upexec/bind_tcp_uuid
+windows/upexec/find_tag
+windows/upexec/reverse_ipv6_tcp
+windows/upexec/reverse_nonx_tcp
+windows/upexec/reverse_ord_tcp
+windows/upexec/reverse_tcp
+windows/upexec/reverse_tcp_allports
+windows/upexec/reverse_tcp_dns
+windows/upexec/reverse_tcp_rc4
+windows/upexec/reverse_tcp_rc4_dns
+windows/upexec/reverse_tcp_uuid
+windows/upexec/reverse_udp
+windows/vncinject/bind_hidden_ipknock_tcp
+windows/vncinject/bind_hidden_tcp
+windows/vncinject/bind_ipv6_tcp
+windows/vncinject/bind_ipv6_tcp_uuid
+windows/vncinject/bind_named_pipe
+windows/vncinject/bind_nonx_tcp
+windows/vncinject/bind_tcp
+windows/vncinject/bind_tcp_rc4
+windows/vncinject/bind_tcp_uuid
+windows/vncinject/find_tag
+windows/vncinject/reverse_hop_http
+windows/vncinject/reverse_http
+windows/vncinject/reverse_http_proxy_pstore
+windows/vncinject/reverse_ipv6_tcp
+windows/vncinject/reverse_nonx_tcp
+windows/vncinject/reverse_ord_tcp
+windows/vncinject/reverse_tcp
+windows/vncinject/reverse_tc
+windows/vncinject/reverse_tcp_dns
+windows/vncinject/reverse_tcp_rc4
+windows/vncinject/reverse_tcp_rc4_dns
+windows/vncinject/reverse_tcp_uuid
+windows/vncinject/reverse_winhttp
+windows/x64/exec
+windows/x64/loadlibrary
+windows/x64/messagebox
+windows/x64/meterpreter/bind_ipv6_tcp
+windows/x64/meterpreter/bind_ipv6_tcp_uuid
+windows/x64/meterpreter/bind_named_pipe
+windows/x64/meterpreter/bind_tcp
+windows/x64/meterpreter/bind_tcp_rc4
+windows/x64/meterpreter/bind_tcp_uuid
+windows/x64/meterpreter/reverse_http
+windows/x64/meterpreter/reverse_https
+windows/x64/meterpreter/reverse_named_pipe
+windows/x64/meterpreter/reverse_tcp
+windows/x64/meterpreter/reverse_tcp_rc4
+windows/x64/meterpreter/reverse_tcp_uuid
+windows/x64/meterpreter/reverse_winhttp
+windows/x64/meterpreter/reverse_winhttps
+windows/x64/meterpreter_bind_named_pipe
+windows/x64/meterpreter_bind_tcp
+windows/x64/meterpreter_reverse_http
+windows/x64/meterpreter_reverse_https
+windows/x64/meterpreter_reverse_ipv6_tcp
+windows/x64/meterpreter_reverse_tcp
+windows/x64/powershell_bind_tcp
+windows/x64/powershell_reverse_tcp
+windows/x64/shell/bind_ipv6_tcp
+windows/x64/shell/bind_ipv6_tcp_uuid
+windows/x64/shell/bind_named_pipe
+windows/x64/shell/bind_tcp
+windows/x64/shell/bind_tcp_rc4
+windows/x64/shell/bind_tcp_uuid
+windows/x64/shell/reverse_tcp
+windows/x64/shell/reverse_tcp_rc4
+windows/x64/shell/reverse_tcp_uuid
+windows/x64/shell_bind_tcp
+windows/x64/shell_reverse_tcp
+windows/x64/vncinject/bind_ipv6_tcp
+windows/x64/vncinject/bind_ipv6_tcp_uuid
+windows/x64/vncinject/bind_named_pipe
+windows/x64/vncinject/bind_tcp
+windows/x64/vncinject/bind_tcp_rc4
+windows/x64/vncinject/bind_tcp_uuid
+windows/x64/vncinject/reverse_http
+windows/x64/vncinject/reverse_https
+windows/x64/vncinject/reverse_tcp
+windows/x64/vncinject/reverse_tcp_rc4
+windows/x64/vncinject/reverse_tcp_uuid
+windows/x64/vncinject/reverse_winhttp
+windows/x64/vncinject/reverse_winhttps</code></pre>
             </div>
             <hr/>
 
@@ -589,9 +1134,57 @@ autoload-Uzcompinit&&compinit-i #（确保 compinit 已加载或通过添加~/.z
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="无参数RCE和无字母webshell">
+                        
+                        <span class="card-title">无参数RCE和无字母webshell</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/总结/" class="post-category" target="_blank">
+                                    总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/笔记/" target="_blank">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
             </div>
             <div class="card">
                 <a href="/2019/07/11/msfveno-zai-zsh-xia-payload-wu-fa-bu-quan-jie-jue/">
@@ -631,55 +1224,6 @@ autoload-Uzcompinit&&compinit-i #（确保 compinit 已加载或通过添加~/.z
                     
                     <a href="/tags/工具/" target="_blank">
                         <span class="chip bg-color">工具</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="无参数RCE和无字母webshell">
-                        
-                        <span class="card-title">无参数RCE和无字母webshell</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/总结/" class="post-category" target="_blank">
-                                    总结
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/笔记/" target="_blank">
-                        <span class="chip bg-color">笔记</span>
                     </a>
                     
                 </div>
@@ -800,7 +1344,7 @@ autoload-Uzcompinit&&compinit-i #（确保 compinit 已加载或通过添加~/.z
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">1.2k</span>
+                <span class="white-color">2.9k</span>
             
 
             
