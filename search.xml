@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>Linux ssh</title>
-      <link href="/2019/07/11/ssh/"/>
-      <url>/2019/07/11/ssh/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Linux-ssh"><a href="#Linux-ssh" class="headerlink" title="Linux ssh"></a>Linux ssh</h1><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>环境为 Ubuntu16.04</p><pre><code>apt-get install sshopen-server</code></pre><p>Ubuntu默认安装了<code>openssh-client</code>。<br>如果没有开启<code>22</code>端口，可以用iptables开启</p><pre class=" language-sh"><code class="language-sh">iptables -A INPUT -p tcp --dport 22 -j ACCEPTiptables -A OUTPUT -p tcp --sport 22 -j ACCEPT</code></pre><p>开启ssh</p><pre><code>service ssh start</code></pre><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><pre><code>ssh username@host #输入密码登陆远程主机ssh -i id_rsa username@host #指定你的私钥免密登陆ssh -p 4444 username@host #指定ssh端口</code></pre><p>设置免密登陆</p><ol><li>生成你的密钥对 <code>ssh-keygen</code></li></ol><pre class=" language-shell"><code class="language-shell">root@ding:/etc/ssh# ssh-keygen #生成密钥对Generating public/private rsa key pair.Enter file in which to save the key (/root/.ssh/id_rsa): #指定你的保存路径默认为 /yourhome/.ssh/id_rsaEnter passphrase (empty for no passphrase): #输入私钥密码，以后么此时用都会提示需要密码，回车表示不设置Enter same passphrase again:Your identification has been saved in /root/.ssh/id_rsa.Your public key has been saved in /root/.ssh/id_rsa.pub.The key fingerprint is:SHA256:UNI6mAQaEiJz8jNXEUMQjFbEciHnwojee0nd6q5DDSE root@dingThe key's randomart image is:+---[RSA 2048]----+|O.+BB=B+.        ||=X+E=o +.        ||+.*++oo.         ||. .=o.+..        || . . .ooS.       ||    o....        ||   ..o .         ||    ...          ||     .+o         |+----[SHA256]-----+</code></pre><p>如果目录下存在同名密钥文件，会提示你是否覆盖，覆盖了可能导致密钥丢失</p><ol start="2"><li><p>利用 <code>ssh-copy-id</code>复制你的公钥到远程主机 </p><pre class=" language-shell"><code class="language-shell">ssh-copy-id username@host #需要知道ssh密码，如果换了端口可以用-p指定</code></pre><p>输入密码后即可复制到 用户的<code>.ssh</code>目录下<br>然后利用<code>ssh username@host</code>即可免密登陆</p></li><li><p>可能会出现的问题<br>权限设置不正确，首先要保证<code>authorized_keys</code>权限为<code>600</code>（公钥信息保存在这里），<code>.ssh</code>目录为<code>700</code>，如果出现错误<code>sign_and_send_pubkey: signing failed: agent refused operation</code>，权限设置，修改<code>/etc/ssh/sshd_config</code>的<code>PubkeyAuthentication yes</code>，表示支持公钥登陆，查看<code>AuthorizedKeysFile</code>是否是使用<code>authorized_keys</code>认证文件。如果都没问题，可能是需要制定私钥文件，可以使用ssh代理</p><pre><code>eval &quot;$(ssh-agent -s)&quot;ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh</a>和<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh代理</a></p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> 总结 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>无参数RCE和无字母webshell</title>
       <link href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/"/>
       <url>/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/</url>
@@ -46,6 +21,31 @@
         <tags>
             
             <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux ssh</title>
+      <link href="/2019/07/11/ssh/"/>
+      <url>/2019/07/11/ssh/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux-ssh"><a href="#Linux-ssh" class="headerlink" title="Linux ssh"></a>Linux ssh</h1><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>环境为 Ubuntu16.04</p><pre><code>apt-get install sshopen-server</code></pre><p>Ubuntu默认安装了<code>openssh-client</code>。<br>如果没有开启<code>22</code>端口，可以用iptables开启</p><pre class=" language-sh"><code class="language-sh">iptables -A INPUT -p tcp --dport 22 -j ACCEPTiptables -A OUTPUT -p tcp --sport 22 -j ACCEPT</code></pre><p>开启ssh</p><pre><code>service ssh start</code></pre><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><pre><code>ssh username@host #输入密码登陆远程主机ssh -i id_rsa username@host #指定你的私钥免密登陆ssh -p 4444 username@host #指定ssh端口</code></pre><p>设置免密登陆</p><ol><li>生成你的密钥对 <code>ssh-keygen</code></li></ol><pre class=" language-shell"><code class="language-shell">root@ding:/etc/ssh# ssh-keygen #生成密钥对Generating public/private rsa key pair.Enter file in which to save the key (/root/.ssh/id_rsa): #指定你的保存路径默认为 /yourhome/.ssh/id_rsaEnter passphrase (empty for no passphrase): #输入私钥密码，以后么此时用都会提示需要密码，回车表示不设置Enter same passphrase again:Your identification has been saved in /root/.ssh/id_rsa.Your public key has been saved in /root/.ssh/id_rsa.pub.The key fingerprint is:SHA256:UNI6mAQaEiJz8jNXEUMQjFbEciHnwojee0nd6q5DDSE root@dingThe key's randomart image is:+---[RSA 2048]----+|O.+BB=B+.        ||=X+E=o +.        ||+.*++oo.         ||. .=o.+..        || . . .ooS.       ||    o....        ||   ..o .         ||    ...          ||     .+o         |+----[SHA256]-----+</code></pre><p>如果目录下存在同名密钥文件，会提示你是否覆盖，覆盖了可能导致密钥丢失</p><ol start="2"><li><p>利用 <code>ssh-copy-id</code>复制你的公钥到远程主机 </p><pre class=" language-shell"><code class="language-shell">ssh-copy-id username@host #需要知道ssh密码，如果换了端口可以用-p指定</code></pre><p>输入密码后即可复制到 用户的<code>.ssh</code>目录下<br>然后利用<code>ssh username@host</code>即可免密登陆</p></li><li><p>可能会出现的问题<br>权限设置不正确，首先要保证<code>authorized_keys</code>权限为<code>600</code>（公钥信息保存在这里），<code>.ssh</code>目录为<code>700</code>，如果出现错误<code>sign_and_send_pubkey: signing failed: agent refused operation</code>，权限设置，修改<code>/etc/ssh/sshd_config</code>的<code>PubkeyAuthentication yes</code>，表示支持公钥登陆，查看<code>AuthorizedKeysFile</code>是否是使用<code>authorized_keys</code>认证文件。如果都没问题，可能是需要制定私钥文件，可以使用ssh代理</p><pre><code>eval &quot;$(ssh-agent -s)&quot;ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh</a>和<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh代理</a></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
             
         </tags>
       
