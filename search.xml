@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>对某地区网站的一次渗透测试实战总结</title>
+      <link href="/2019/07/11/msfveno-zai-zsh-xia-payload-wu-fa-bu-quan-jie-jue/"/>
+      <url>/2019/07/11/msfveno-zai-zsh-xia-payload-wu-fa-bu-quan-jie-jue/</url>
+      
+        <content type="html"><![CDATA[<h1 id="msfveno在zsh下payload无法补全解决"><a href="#msfveno在zsh下payload无法补全解决" class="headerlink" title="msfveno在zsh下payload无法补全解决"></a>msfveno在zsh下payload无法补全解决</h1><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>首先要想<code>msfveno</code>有代码提示，需要安装<code>zsh</code></p><pre class=" language-sh"><code class="language-sh">sudo apt-get install zsh</code></pre><p>然后安装<code>oh-my-zsh</code></p><pre class=" language-sh"><code class="language-sh">sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"</code></pre><p>安装脚本</p><pre class=" language-sh"><code class="language-sh">git clone https://github.com/Green-m/msfvenom-zsh-completion ~/.oh-my-zsh/custom/plugins/msfvenom/</code></pre><p>查看是否下载成功</p><pre class=" language-sh"><code class="language-sh">ls ~/.oh-my-zsh/custom/plugins/msfvenom/</code></pre><p>修改配置文件</p><pre class=" language-sh"><code class="language-sh">vi ~/.zshrc #找到plugins=(git),改成plugins=(msfvenom)#下面两条添加到最底下fpath=(~/.zsh/completion$fpath) #（$fpath 通过添加来包含您的目录~/.zshrcautoload-Uzcompinit&&compinit-i #（确保 compinit 已加载或通过添加~/.zshrc）</code></pre><p>保存退出，执行</p><pre class=" language-sh"><code class="language-sh">source ~/.zshrc</code></pre><h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p>发现其参数都可以智能提示，但是payload没有。看了源码没怎么看懂，但是看出来一种解决方案，虽然提示有点乱，但是还是有提示的。</p><p>方法就是把你的<code>payload</code>添加到<code>~/.zsh/venom-cache</code>这个文件中下次再使用就有提示了。</p><p><img src="_v_images/20190712224750084_1806.png" alt="blog_1"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 不知道什么分类 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>无参数RCE和无字母webshell</title>
       <link href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/"/>
       <url>/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/</url>
