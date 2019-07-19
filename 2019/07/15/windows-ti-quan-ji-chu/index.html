@@ -4,10 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux ssh, 沉梦昂志">
-    <meta name="description" content="Linux ssh基本配置环境为 Ubuntu16.04
-apt-get install sshopen-serverUbuntu默认安装了openssh-client。如果没有开启22端口，可以用iptables开启
-iptables -">
+    <meta name="keywords" content="windows提权基础, 沉梦昂志">
+    <meta name="description" content="windows提权基础windows基础提权命令systeminfo | findstr /B /C:&#34;OS 名称&#34; /C:&#34;OS 版本&#34;  #查看系统信息
+Hostname  #主机名
+Set  #环境变量
+Net user  #查看用户">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +16,7 @@ iptables -">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Linux ssh | 沉梦昂志</title>
+    <title>windows提权基础 | 沉梦昂志</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://mail.ding0x0.top/font-awesome.min.css">
@@ -199,13 +200,13 @@ iptables -">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://mail.ding0x0.top/pic_4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://mail.ding0x0.top/pic_5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Linux ssh
+                        windows提权基础
                     </div>
                 </div>
             </div>
@@ -316,8 +317,8 @@ iptables -">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/" target="_blank">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/笔记/" target="_blank">
+                                <span class="chip bg-color">笔记</span>
                             </a>
                         
                     </div>
@@ -340,21 +341,21 @@ iptables -">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-11
+                    2019-07-15
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        468
+                        254
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        1 分
                     </div>
                     
                 
@@ -370,49 +371,26 @@ iptables -">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Linux-ssh"><a href="#Linux-ssh" class="headerlink" title="Linux ssh"></a>Linux ssh</h1><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>环境为 Ubuntu16.04</p>
-<pre><code>apt-get install sshopen-server</code></pre><p>Ubuntu默认安装了<code>openssh-client</code>。<br>如果没有开启<code>22</code>端口，可以用iptables开启</p>
-<pre class=" language-sh"><code class="language-sh">iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT</code></pre>
-<p>开启ssh</p>
-<pre><code>service ssh start</code></pre><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><pre><code>ssh username@host #输入密码登陆远程主机
-ssh -i id_rsa username@host #指定你的私钥免密登陆
-ssh -p 4444 username@host #指定ssh端口</code></pre><p>设置免密登陆</p>
-<ol>
-<li>生成你的密钥对 <code>ssh-keygen</code></li>
-</ol>
-<pre class=" language-shell"><code class="language-shell">root@ding:/etc/ssh# ssh-keygen #生成密钥对
-Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa): #指定你的保存路径默认为 /yourhome/.ssh/id_rsa
-Enter passphrase (empty for no passphrase): #输入私钥密码，以后么此时用都会提示需要密码，回车表示不设置
-Enter same passphrase again:
-Your identification has been saved in /root/.ssh/id_rsa.
-Your public key has been saved in /root/.ssh/id_rsa.pub.
-The key fingerprint is:
-SHA256:UNI6mAQaEiJz8jNXEUMQjFbEciHnwojee0nd6q5DDSE root@ding
-The key's randomart image is:
-+---[RSA 2048]----+
-|O.+BB=B+.        |
-|=X+E=o +.        |
-|+.*++oo.         |
-|. .=o.+..        |
-| . . .ooS.       |
-|    o....        |
-|   ..o .         |
-|    ...          |
-|     .+o         |
-+----[SHA256]-----+</code></pre>
-<p>如果目录下存在同名密钥文件，会提示你是否覆盖，覆盖了可能导致密钥丢失</p>
-<ol start="2">
-<li><p>利用 <code>ssh-copy-id</code>复制你的公钥到远程主机 </p>
-<pre class=" language-shell"><code class="language-shell">ssh-copy-id username@host #需要知道ssh密码，如果换了端口可以用-p指定</code></pre>
-<p>输入密码后即可复制到 用户的<code>.ssh</code>目录下<br>然后利用<code>ssh username@host</code>即可免密登陆</p>
-</li>
-<li><p>可能会出现的问题<br>权限设置不正确，首先要保证<code>authorized_keys</code>权限为<code>600</code>（公钥信息保存在这里），<code>.ssh</code>目录为<code>700</code>，如果出现错误<code>sign_and_send_pubkey: signing failed: agent refused operation</code>，权限设置，修改<code>/etc/ssh/sshd_config</code>的<code>PubkeyAuthentication yes</code>，表示支持公钥登陆，查看<code>AuthorizedKeysFile</code>是否是使用<code>authorized_keys</code>认证文件。如果都没问题，可能是需要制定私钥文件，可以使用ssh代理</p>
-<pre><code>eval &quot;$(ssh-agent -s)&quot;
-ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh</a>和<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh代理</a></p>
-</li>
-</ol>
+                <h1 id="windows提权基础"><a href="#windows提权基础" class="headerlink" title="windows提权基础"></a>windows提权基础</h1><h2 id="windows基础提权命令"><a href="#windows基础提权命令" class="headerlink" title="windows基础提权命令"></a>windows基础提权命令</h2><pre class=" language-cmd"><code class="language-cmd">systeminfo | findstr /B /C:"OS 名称" /C:"OS 版本"  #查看系统信息
+Hostname  #主机名
+Set  #环境变量
+Net user  #查看用户信息
+Net1 user  #查看用户信息
+Tasklist /svc | find "TermService"
+netstat -ano | find "1488"
+wmic os get caption  #查看系统名
+wmic qfe get Description,HotFixID,InstalledOn  #查看补丁信息
+wmic product get name,version  #查看当前安装程序
+
+systeminfo>C:\Windows\Temp\temp.txt&(for %i in (KB4013081 KB3198234 KB3124280 KB3143141 KB3134228 KB3079904 KB3077657 KB3124280 KB3045171 KB2829361 KB3000061 KB2850851 KB2707511 KB970483 KB2124261 KB2271195 KB3057191 KB2840221 KB3000061 KB2850851 KB2711167 KB2360937 KB2478960 KB2507938 KB2566454 KB2646524 KB2645640 KB2641653 KB944653 KB952004 KB971657 KB2620712 KB2393802 KB942831 KB2503665 KB2592799 KB956572 KB977165 KB2621440) do @type C:\Windows\Temp\temp.txt|@find /i "%i"|| @echo %i Not Installed!)&del /f /q /a C:\Windows\Temp\temp.txt  #查看常用exp
+
+REG QUERY "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections  #检测3389是否允许远程连接  1 or 0
+
+REG QUERY "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v PortNumber  #查看远程连接端口
+
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f  #打开 3389
+
+netsh advfirewall firewall add rule name="Remote Desktop" protocol=TCP dir=in localport=3389 action=allow  #修改防火墙</code></pre>
 
             </div>
             <hr/>
@@ -571,9 +549,9 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Linux ssh》
+                    《windows提权基础》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/11/ssh/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/15/windows-ti-quan-ji-chu/" property="cc:attributionName"
                rel="cc:attributionURL">
                 ding
             </a> 采用
@@ -617,31 +595,31 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/07/11/billu-b0x-ba-ji-shen-tou/">
+                <a href="/2019/07/19/shen-tou-ce-shi-xin-xi-sou-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="Billu_b0x靶机渗透">
+                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="渗透测试-信息搜集">
                         
-                        <span class="card-title">Billu_b0x靶机渗透</span>
+                        <span class="card-title">渗透测试-信息搜集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            用msfveno生成payload的时候没有提示始终是一个痛点，看网上的一篇教程解决了一部分问题，这篇写出我对payload代码提示的解决方案
+                            渗透测试-信息搜集
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-19
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/渗透测试/" class="post-category" target="_blank">
-                                    渗透测试
+                            <a href="/categories/总结/" class="post-category" target="_blank">
+                                    总结
                                 </a>
                             
                             
@@ -651,12 +629,8 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/渗透测试/" target="_blank">
-                        <span class="chip bg-color">渗透测试</span>
-                    </a>
-                    
-                    <a href="/tags/writeup/" target="_blank">
-                        <span class="chip bg-color">writeup</span>
+                    <a href="/tags/笔记/" target="_blank">
+                        <span class="chip bg-color">笔记</span>
                     </a>
                     
                 </div>
@@ -670,24 +644,24 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/">
+                <a href="/2019/07/15/xss/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="无参数RCE和无字母webshell">
+                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="XSS一些总结">
                         
-                        <span class="card-title">无参数RCE和无字母webshell</span>
+                        <span class="card-title">XSS一些总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            无参数RCE和无字母webshell利用的一点总结
+                            XSS一些总结
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
                             </span>
                         <span class="publish-author">
                             

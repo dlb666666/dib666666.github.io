@@ -4,10 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux ssh, 沉梦昂志">
-    <meta name="description" content="Linux ssh基本配置环境为 Ubuntu16.04
-apt-get install sshopen-serverUbuntu默认安装了openssh-client。如果没有开启22端口，可以用iptables开启
-iptables -">
+    <meta name="keywords" content="渗透测试-信息搜集, 沉梦昂志">
+    <meta name="description" content="信息搜集信息搜集的作用
+了解组织安全架构
+缩小攻击范围
+描绘网络拓扑
+建立脆弱点数据库
+
+信息搜集的分类
+主动信息搜集：与目标主机进行直接交互，从而拿到目标信息，缺点是会记录自己的操作信息。
+被动信息搜集：不与目标主机进行直接交互，通过搜索">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +21,7 @@ iptables -">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Linux ssh | 沉梦昂志</title>
+    <title>渗透测试-信息搜集 | 沉梦昂志</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://mail.ding0x0.top/font-awesome.min.css">
@@ -205,7 +211,7 @@ iptables -">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Linux ssh
+                        渗透测试-信息搜集
                     </div>
                 </div>
             </div>
@@ -316,8 +322,8 @@ iptables -">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/" target="_blank">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/笔记/" target="_blank">
+                                <span class="chip bg-color">笔记</span>
                             </a>
                         
                     </div>
@@ -340,21 +346,21 @@ iptables -">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-11
+                    2019-07-19
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        468
+                        1.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        4 分
                     </div>
                     
                 
@@ -370,49 +376,155 @@ iptables -">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Linux-ssh"><a href="#Linux-ssh" class="headerlink" title="Linux ssh"></a>Linux ssh</h1><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>环境为 Ubuntu16.04</p>
-<pre><code>apt-get install sshopen-server</code></pre><p>Ubuntu默认安装了<code>openssh-client</code>。<br>如果没有开启<code>22</code>端口，可以用iptables开启</p>
-<pre class=" language-sh"><code class="language-sh">iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT</code></pre>
-<p>开启ssh</p>
-<pre><code>service ssh start</code></pre><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><pre><code>ssh username@host #输入密码登陆远程主机
-ssh -i id_rsa username@host #指定你的私钥免密登陆
-ssh -p 4444 username@host #指定ssh端口</code></pre><p>设置免密登陆</p>
-<ol>
-<li>生成你的密钥对 <code>ssh-keygen</code></li>
+                <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h2 id="信息搜集的作用"><a href="#信息搜集的作用" class="headerlink" title="信息搜集的作用"></a>信息搜集的作用</h2><ol>
+<li>了解组织安全架构</li>
+<li>缩小攻击范围</li>
+<li>描绘网络拓扑</li>
+<li>建立脆弱点数据库</li>
 </ol>
-<pre class=" language-shell"><code class="language-shell">root@ding:/etc/ssh# ssh-keygen #生成密钥对
-Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa): #指定你的保存路径默认为 /yourhome/.ssh/id_rsa
-Enter passphrase (empty for no passphrase): #输入私钥密码，以后么此时用都会提示需要密码，回车表示不设置
-Enter same passphrase again:
-Your identification has been saved in /root/.ssh/id_rsa.
-Your public key has been saved in /root/.ssh/id_rsa.pub.
-The key fingerprint is:
-SHA256:UNI6mAQaEiJz8jNXEUMQjFbEciHnwojee0nd6q5DDSE root@ding
-The key's randomart image is:
-+---[RSA 2048]----+
-|O.+BB=B+.        |
-|=X+E=o +.        |
-|+.*++oo.         |
-|. .=o.+..        |
-| . . .ooS.       |
-|    o....        |
-|   ..o .         |
-|    ...          |
-|     .+o         |
-+----[SHA256]-----+</code></pre>
-<p>如果目录下存在同名密钥文件，会提示你是否覆盖，覆盖了可能导致密钥丢失</p>
-<ol start="2">
-<li><p>利用 <code>ssh-copy-id</code>复制你的公钥到远程主机 </p>
-<pre class=" language-shell"><code class="language-shell">ssh-copy-id username@host #需要知道ssh密码，如果换了端口可以用-p指定</code></pre>
-<p>输入密码后即可复制到 用户的<code>.ssh</code>目录下<br>然后利用<code>ssh username@host</code>即可免密登陆</p>
-</li>
-<li><p>可能会出现的问题<br>权限设置不正确，首先要保证<code>authorized_keys</code>权限为<code>600</code>（公钥信息保存在这里），<code>.ssh</code>目录为<code>700</code>，如果出现错误<code>sign_and_send_pubkey: signing failed: agent refused operation</code>，权限设置，修改<code>/etc/ssh/sshd_config</code>的<code>PubkeyAuthentication yes</code>，表示支持公钥登陆，查看<code>AuthorizedKeysFile</code>是否是使用<code>authorized_keys</code>认证文件。如果都没问题，可能是需要制定私钥文件，可以使用ssh代理</p>
-<pre><code>eval &quot;$(ssh-agent -s)&quot;
-ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh</a>和<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh代理</a></p>
-</li>
+<h2 id="信息搜集的分类"><a href="#信息搜集的分类" class="headerlink" title="信息搜集的分类"></a>信息搜集的分类</h2><ol>
+<li>主动信息搜集：与目标主机进行直接交互，从而拿到目标信息，缺点是会记录自己的操作信息。</li>
+<li>被动信息搜集：不与目标主机进行直接交互，通过搜索引擎或者社会工程等方式间接的获取目标主机的信息。</li>
 </ol>
+<h2 id="服务器信息搜集"><a href="#服务器信息搜集" class="headerlink" title="服务器信息搜集"></a>服务器信息搜集</h2><ul>
+<li><p>whois查询</p>
+<ul>
+<li>域名详细信息</li>
+<li>域名服务器信息</li>
+<li>网络ip地址</li>
+<li>域名创建，过期时间</li>
+<li>最近更新记录</li>
+<li>可通过注册邮箱、注册人等反查相关目标注册过的域名。</li>
+<li>站长之家<a href="http://whois.chinaz.com" target="_blank" rel="noopener">http://whois.chinaz.com</a></li>
+<li>阿里云域名信息查询<a href="https://whois.aliyun.com" target="_blank" rel="noopener">https://whois.aliyun.com</a></li>
+<li>Kali whois命令</li>
+<li>Python-whois模块查询域名信息</li>
+</ul>
+</li>
+<li><p>企业信息搜集</p>
+<ul>
+<li>企业基本信息。</li>
+<li>员工信息（手机号码、邮箱、姓名等），组织框架、企业法人、企业综合信息等。</li>
+<li>其中员工信息收集是信息收集中的一项重要工作，员工信息包括：员工姓名、员工工号、员工家庭及交际信息、上网习惯等。（社会工程学）</li>
+<li>员工身份信息：员工简历，员工身份证，手机号，生日，家乡，住址等个人信息。5、员工社交账号信息：QQ号，QQ群，微博，微信，支付宝，员工邮箱账号等。</li>
+</ul>
+</li>
+<li><p>企业信息查询网站：</p>
+<ul>
+<li><a href="https://www.tianyancha.com天眼查" target="_blank" rel="noopener">https://www.tianyancha.com天眼查</a></li>
+<li><a href="https://www.qichacha.com/企查查" target="_blank" rel="noopener">https://www.qichacha.com/企查查</a></li>
+<li><a href="http://www.miitbeian.gov.cn/icp/publish/query/icpMemoInfo_showPage.action#ICP备案查询" target="_blank" rel="noopener">http://www.miitbeian.gov.cn/icp/publish/query/icpMemoInfo_showPage.action#ICP备案查询</a></li>
+<li><a href="http://www.beian.gov.cn/portal/recordQuery公安部备案查询" target="_blank" rel="noopener">http://www.beian.gov.cn/portal/recordQuery公安部备案查询</a></li>
+</ul>
+</li>
+<li><p>信息深入挖掘</p>
+<ul>
+<li>天眼查服务器搜集</li>
+<li>GitHub信息（泄露源码，泄露数据库，邮箱，ftp，ssh，3389账号）</li>
+<li>SVN信息</li>
+<li>开放端口检测</li>
+<li>cms指纹识别</li>
+</ul>
+</li>
+<li><p>邮箱信息搜集</p>
+<ul>
+<li>常见的在线邮箱收集网站，这些网站通过爬虫，搜索引擎等方式，获取互联网上暴露的邮箱地址。</li>
+<li><a href="http://www.skymem.info/" target="_blank" rel="noopener">http://www.skymem.info/</a></li>
+<li><a href="https://hunter.io/" target="_blank" rel="noopener">https://hunter.io/</a></li>
+<li><a href="https://email-format.com/" target="_blank" rel="noopener">https://email-format.com/</a></li>
+</ul>
+</li>
+<li><p>搜索引擎查询</p>
+<ul>
+<li>Google、baidu、Bing等传统搜索引擎</li>
+<li>site:baidu.com inurl:baidu.com</li>
+<li>搜target.com|公司名字</li>
+</ul>
+</li>
+<li><p>子域名枚举</p>
+<ul>
+<li>子域名枚举是为一个或多个域查找子域的过程，它是信息收集阶段的重要组成部分。</li>
+<li>子域名探测可以帮我们发现渗透测试中更多的服务，它们在安全评估的范围内，从而增加了发现漏洞的机会。</li>
+<li>查找一些用户上较少，被人遗忘的子域名，其上运行的应用程序可能会使我们发现关键漏洞。3.通常，同一组织的不同域名/应用程序中存在相同的漏洞。</li>
+</ul>
+</li>
+<li><p>子域名搜集小工具</p>
+<ul>
+<li>subDomainsBrute <a href="https://github.com/lijiejie/subDomainsBrute" target="_blank" rel="noopener">https://github.com/lijiejie/subDomainsBrute</a></li>
+<li>wydomain <a href="https://github.com/ring04h/wydomain" target="_blank" rel="noopener">https://github.com/ring04h/wydomain</a></li>
+<li>wafw00f <a href="https://github.com/EnableSecurity/wafw00f" target="_blank" rel="noopener">https://github.com/EnableSecurity/wafw00f</a></li>
+<li>WhatWeb <a href="https://github.com/urbanadventurer/whatweb" target="_blank" rel="noopener">https://github.com/urbanadventurer/whatweb</a></li>
+<li>dirsearch <a href="https://github.com/urbanadventurer/whatweb" target="_blank" rel="noopener">https://github.com/urbanadventurer/whatweb</a></li>
+<li>layer子域名挖掘机</li>
+<li>DNSdumpster</li>
+<li>Sublist3r <a href="https://github.com/aboul3la/Sublist3r" target="_blank" rel="noopener">https://github.com/aboul3la/Sublist3r</a></li>
+</ul>
+</li>
+<li><p>web应用指纹信息</p>
+<ul>
+<li>网站架构<ul>
+<li>中间件</li>
+<li>开发语言</li>
+<li>操作系统类型</li>
+<li>数据库类型</li>
+</ul>
+</li>
+<li>web应用指纹信息<ul>
+<li>潮汐指纹：<a href="http://finger.tidesec.net" target="_blank" rel="noopener">http://finger.tidesec.net</a></li>
+<li>云悉 <a href="http://www.yunsee.cn" target="_blank" rel="noopener">http://www.yunsee.cn</a></li>
+<li>wappalyzer chrome插件</li>
+<li>kali whatweb</li>
+<li>cms识别工具 <a href="http://whatweb.bugscaner.com/look" target="_blank" rel="noopener">http://whatweb.bugscaner.com/look</a></li>
+<li>御剑</li>
+</ul>
+</li>
+<li>敏感信息，目录信息<ul>
+<li>robots.txt</li>
+<li>crossdomin.xml</li>
+<li>sitemap.xml</li>
+<li>后台目录</li>
+<li>网站安装包</li>
+<li>网站上传目录</li>
+<li>mysql管理页面</li>
+<li>phpinfo</li>
+<li>网站富文本编辑器</li>
+<li>测试文件</li>
+<li>备份文件(.rar、.zip、.7z、.rar.gz、.bak)，(<a href="http://www.zip、root.zip、web.zip" target="_blank" rel="noopener">www.zip、root.zip、web.zip</a>)</li>
+<li>DS_Store文件</li>
+<li>vim缓存文件(.swp、.swo、.swn)</li>
+<li>web-inf/web.xml文件</li>
+</ul>
+</li>
+<li>cms、通用性信息<ul>
+<li>cms类型</li>
+<li>display:none 中的版权信息</li>
+<li>页面底部版权信息，关键字© Powered by等</li>
+<li>注释掉的html代码</li>
+<li>http头中的X-Poweered-By中的值</li>
+<li>cookie中的关键字</li>
+<li>robots.txt中的关键字</li>
+<li>404报错页面</li>
+</ul>
+</li>
+<li>旁站查询<ul>
+<li>旁站是和目标网站在同一台服务器上的其它的网站，主站无法获取权限的情况下，旁站便可以作为攻击入口。</li>
+<li><a href="http://s.tool.chinaz.com/same" target="_blank" rel="noopener">http://s.tool.chinaz.com/same</a></li>
+<li><a href="https://phpinfo.me/bing.php" target="_blank" rel="noopener">https://phpinfo.me/bing.php</a></li>
+<li><a href="https://www.aizhan.com/" target="_blank" rel="noopener">https://www.aizhan.com/</a> IP反查域名</li>
+<li><a href="http://www.webscan.cc" target="_blank" rel="noopener">http://www.webscan.cc</a></li>
+</ul>
+</li>
+<li>C段信息<ul>
+<li><a href="http://www.webscan.cc" target="_blank" rel="noopener">http://www.webscan.cc</a></li>
+<li><a href="https://phpinfo.me/bing.php" target="_blank" rel="noopener">https://phpinfo.me/bing.php</a></li>
+<li><a href="https://www.chinabaiker.com/cduan.php" target="_blank" rel="noopener">https://www.chinabaiker.com/cduan.php</a></li>
+<li>Nmap扫描C段</li>
+<li>菜刀扫描C段</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
             </div>
             <hr/>
@@ -571,9 +683,9 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Linux ssh》
+                    《渗透测试-信息搜集》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/11/ssh/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/19/shen-tou-ce-shi-xin-xi-sou-ji/" property="cc:attributionName"
                rel="cc:attributionURL">
                 ding
             </a> 采用
@@ -613,50 +725,48 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/07/11/billu-b0x-ba-ji-shen-tou/">
+                <a href="/2019/07/19/shen-tou-ce-shi-xin-xi-sou-ji/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="Billu_b0x靶机渗透">
+                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="渗透测试-信息搜集">
                         
-                        <span class="card-title">Billu_b0x靶机渗透</span>
+                        <span class="card-title">渗透测试-信息搜集</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            用msfveno生成payload的时候没有提示始终是一个痛点，看网上的一篇教程解决了一部分问题，这篇写出我对payload代码提示的解决方案
+                            渗透测试-信息搜集
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/渗透测试/" class="post-category" target="_blank">
-                                    渗透测试
+                            <a href="/categories/总结/" class="post-category" target="_blank">
+                                    总结
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/渗透测试/" target="_blank">
-                        <span class="chip bg-color">渗透测试</span>
-                    </a>
-                    
-                    <a href="/tags/writeup/" target="_blank">
-                        <span class="chip bg-color">writeup</span>
+                    <a href="/tags/笔记/" target="_blank">
+                        <span class="chip bg-color">笔记</span>
                     </a>
                     
                 </div>
@@ -670,24 +780,24 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/11/wu-can-shu-rce-he-wu-zi-mu-webshell/">
+                <a href="/2019/07/15/windows-ti-quan-ji-chu/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="无参数RCE和无字母webshell">
+                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="windows提权基础">
                         
-                        <span class="card-title">无参数RCE和无字母webshell</span>
+                        <span class="card-title">windows提权基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            无参数RCE和无字母webshell利用的一点总结
+                            windows提权基础
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
                             </span>
                         <span class="publish-author">
                             

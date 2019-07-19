@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>渗透测试-信息搜集</title>
+      <link href="/2019/07/19/shen-tou-ce-shi-xin-xi-sou-ji/"/>
+      <url>/2019/07/19/shen-tou-ce-shi-xin-xi-sou-ji/</url>
+      
+        <content type="html"><![CDATA[<h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h2 id="信息搜集的作用"><a href="#信息搜集的作用" class="headerlink" title="信息搜集的作用"></a>信息搜集的作用</h2><ol><li>了解组织安全架构</li><li>缩小攻击范围</li><li>描绘网络拓扑</li><li>建立脆弱点数据库</li></ol><h2 id="信息搜集的分类"><a href="#信息搜集的分类" class="headerlink" title="信息搜集的分类"></a>信息搜集的分类</h2><ol><li>主动信息搜集：与目标主机进行直接交互，从而拿到目标信息，缺点是会记录自己的操作信息。</li><li>被动信息搜集：不与目标主机进行直接交互，通过搜索引擎或者社会工程等方式间接的获取目标主机的信息。</li></ol><h2 id="服务器信息搜集"><a href="#服务器信息搜集" class="headerlink" title="服务器信息搜集"></a>服务器信息搜集</h2><ul><li><p>whois查询</p><ul><li>域名详细信息</li><li>域名服务器信息</li><li>网络ip地址</li><li>域名创建，过期时间</li><li>最近更新记录</li><li>可通过注册邮箱、注册人等反查相关目标注册过的域名。</li><li>站长之家<a href="http://whois.chinaz.com" target="_blank" rel="noopener">http://whois.chinaz.com</a></li><li>阿里云域名信息查询<a href="https://whois.aliyun.com" target="_blank" rel="noopener">https://whois.aliyun.com</a></li><li>Kali whois命令</li><li>Python-whois模块查询域名信息</li></ul></li><li><p>企业信息搜集</p><ul><li>企业基本信息。</li><li>员工信息（手机号码、邮箱、姓名等），组织框架、企业法人、企业综合信息等。</li><li>其中员工信息收集是信息收集中的一项重要工作，员工信息包括：员工姓名、员工工号、员工家庭及交际信息、上网习惯等。（社会工程学）</li><li>员工身份信息：员工简历，员工身份证，手机号，生日，家乡，住址等个人信息。5、员工社交账号信息：QQ号，QQ群，微博，微信，支付宝，员工邮箱账号等。</li></ul></li><li><p>企业信息查询网站：</p><ul><li><a href="https://www.tianyancha.com天眼查" target="_blank" rel="noopener">https://www.tianyancha.com天眼查</a></li><li><a href="https://www.qichacha.com/企查查" target="_blank" rel="noopener">https://www.qichacha.com/企查查</a></li><li><a href="http://www.miitbeian.gov.cn/icp/publish/query/icpMemoInfo_showPage.action#ICP备案查询" target="_blank" rel="noopener">http://www.miitbeian.gov.cn/icp/publish/query/icpMemoInfo_showPage.action#ICP备案查询</a></li><li><a href="http://www.beian.gov.cn/portal/recordQuery公安部备案查询" target="_blank" rel="noopener">http://www.beian.gov.cn/portal/recordQuery公安部备案查询</a></li></ul></li><li><p>信息深入挖掘</p><ul><li>天眼查服务器搜集</li><li>GitHub信息（泄露源码，泄露数据库，邮箱，ftp，ssh，3389账号）</li><li>SVN信息</li><li>开放端口检测</li><li>cms指纹识别</li></ul></li><li><p>邮箱信息搜集</p><ul><li>常见的在线邮箱收集网站，这些网站通过爬虫，搜索引擎等方式，获取互联网上暴露的邮箱地址。</li><li><a href="http://www.skymem.info/" target="_blank" rel="noopener">http://www.skymem.info/</a></li><li><a href="https://hunter.io/" target="_blank" rel="noopener">https://hunter.io/</a></li><li><a href="https://email-format.com/" target="_blank" rel="noopener">https://email-format.com/</a></li></ul></li><li><p>搜索引擎查询</p><ul><li>Google、baidu、Bing等传统搜索引擎</li><li>site:baidu.com inurl:baidu.com</li><li>搜target.com|公司名字</li></ul></li><li><p>子域名枚举</p><ul><li>子域名枚举是为一个或多个域查找子域的过程，它是信息收集阶段的重要组成部分。</li><li>子域名探测可以帮我们发现渗透测试中更多的服务，它们在安全评估的范围内，从而增加了发现漏洞的机会。</li><li>查找一些用户上较少，被人遗忘的子域名，其上运行的应用程序可能会使我们发现关键漏洞。3.通常，同一组织的不同域名/应用程序中存在相同的漏洞。</li></ul></li><li><p>子域名搜集小工具</p><ul><li>subDomainsBrute <a href="https://github.com/lijiejie/subDomainsBrute" target="_blank" rel="noopener">https://github.com/lijiejie/subDomainsBrute</a></li><li>wydomain <a href="https://github.com/ring04h/wydomain" target="_blank" rel="noopener">https://github.com/ring04h/wydomain</a></li><li>wafw00f <a href="https://github.com/EnableSecurity/wafw00f" target="_blank" rel="noopener">https://github.com/EnableSecurity/wafw00f</a></li><li>WhatWeb <a href="https://github.com/urbanadventurer/whatweb" target="_blank" rel="noopener">https://github.com/urbanadventurer/whatweb</a></li><li>dirsearch <a href="https://github.com/urbanadventurer/whatweb" target="_blank" rel="noopener">https://github.com/urbanadventurer/whatweb</a></li><li>layer子域名挖掘机</li><li>DNSdumpster</li><li>Sublist3r <a href="https://github.com/aboul3la/Sublist3r" target="_blank" rel="noopener">https://github.com/aboul3la/Sublist3r</a></li></ul></li><li><p>web应用指纹信息</p><ul><li>网站架构<ul><li>中间件</li><li>开发语言</li><li>操作系统类型</li><li>数据库类型</li></ul></li><li>web应用指纹信息<ul><li>潮汐指纹：<a href="http://finger.tidesec.net" target="_blank" rel="noopener">http://finger.tidesec.net</a></li><li>云悉 <a href="http://www.yunsee.cn" target="_blank" rel="noopener">http://www.yunsee.cn</a></li><li>wappalyzer chrome插件</li><li>kali whatweb</li><li>cms识别工具 <a href="http://whatweb.bugscaner.com/look" target="_blank" rel="noopener">http://whatweb.bugscaner.com/look</a></li><li>御剑</li></ul></li><li>敏感信息，目录信息<ul><li>robots.txt</li><li>crossdomin.xml</li><li>sitemap.xml</li><li>后台目录</li><li>网站安装包</li><li>网站上传目录</li><li>mysql管理页面</li><li>phpinfo</li><li>网站富文本编辑器</li><li>测试文件</li><li>备份文件(.rar、.zip、.7z、.rar.gz、.bak)，(<a href="http://www.zip、root.zip、web.zip" target="_blank" rel="noopener">www.zip、root.zip、web.zip</a>)</li><li>DS_Store文件</li><li>vim缓存文件(.swp、.swo、.swn)</li><li>web-inf/web.xml文件</li></ul></li><li>cms、通用性信息<ul><li>cms类型</li><li>display:none 中的版权信息</li><li>页面底部版权信息，关键字© Powered by等</li><li>注释掉的html代码</li><li>http头中的X-Poweered-By中的值</li><li>cookie中的关键字</li><li>robots.txt中的关键字</li><li>404报错页面</li></ul></li><li>旁站查询<ul><li>旁站是和目标网站在同一台服务器上的其它的网站，主站无法获取权限的情况下，旁站便可以作为攻击入口。</li><li><a href="http://s.tool.chinaz.com/same" target="_blank" rel="noopener">http://s.tool.chinaz.com/same</a></li><li><a href="https://phpinfo.me/bing.php" target="_blank" rel="noopener">https://phpinfo.me/bing.php</a></li><li><a href="https://www.aizhan.com/" target="_blank" rel="noopener">https://www.aizhan.com/</a> IP反查域名</li><li><a href="http://www.webscan.cc" target="_blank" rel="noopener">http://www.webscan.cc</a></li></ul></li><li>C段信息<ul><li><a href="http://www.webscan.cc" target="_blank" rel="noopener">http://www.webscan.cc</a></li><li><a href="https://phpinfo.me/bing.php" target="_blank" rel="noopener">https://phpinfo.me/bing.php</a></li><li><a href="https://www.chinabaiker.com/cduan.php" target="_blank" rel="noopener">https://www.chinabaiker.com/cduan.php</a></li><li>Nmap扫描C段</li><li>菜刀扫描C段</li></ul></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>windows提权基础</title>
+      <link href="/2019/07/15/windows-ti-quan-ji-chu/"/>
+      <url>/2019/07/15/windows-ti-quan-ji-chu/</url>
+      
+        <content type="html"><![CDATA[<h1 id="windows提权基础"><a href="#windows提权基础" class="headerlink" title="windows提权基础"></a>windows提权基础</h1><h2 id="windows基础提权命令"><a href="#windows基础提权命令" class="headerlink" title="windows基础提权命令"></a>windows基础提权命令</h2><pre class=" language-cmd"><code class="language-cmd">systeminfo | findstr /B /C:"OS 名称" /C:"OS 版本"  #查看系统信息Hostname  #主机名Set  #环境变量Net user  #查看用户信息Net1 user  #查看用户信息Tasklist /svc | find "TermService"netstat -ano | find "1488"wmic os get caption  #查看系统名wmic qfe get Description,HotFixID,InstalledOn  #查看补丁信息wmic product get name,version  #查看当前安装程序systeminfo>C:\Windows\Temp\temp.txt&(for %i in (KB4013081 KB3198234 KB3124280 KB3143141 KB3134228 KB3079904 KB3077657 KB3124280 KB3045171 KB2829361 KB3000061 KB2850851 KB2707511 KB970483 KB2124261 KB2271195 KB3057191 KB2840221 KB3000061 KB2850851 KB2711167 KB2360937 KB2478960 KB2507938 KB2566454 KB2646524 KB2645640 KB2641653 KB944653 KB952004 KB971657 KB2620712 KB2393802 KB942831 KB2503665 KB2592799 KB956572 KB977165 KB2621440) do @type C:\Windows\Temp\temp.txt|@find /i "%i"|| @echo %i Not Installed!)&del /f /q /a C:\Windows\Temp\temp.txt  #查看常用expREG QUERY "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections  #检测3389是否允许远程连接  1 or 0REG QUERY "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" /v PortNumber  #查看远程连接端口REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f  #打开 3389netsh advfirewall firewall add rule name="Remote Desktop" protocol=TCP dir=in localport=3389 action=allow  #修改防火墙</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>XSS一些总结</title>
       <link href="/2019/07/15/xss/"/>
       <url>/2019/07/15/xss/</url>
