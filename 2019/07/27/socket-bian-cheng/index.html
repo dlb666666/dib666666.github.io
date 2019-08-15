@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="socket编程学习, 沉梦昂志">
+    <meta name="keywords" content="socket编程学习笔记, 沉梦昂志">
     <meta name="description" content="Python Socket编程流程
 创建socket server
 
@@ -24,7 +24,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>socket编程学习 | 沉梦昂志</title>
+    <title>socket编程学习笔记 | 沉梦昂志</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://mail.ding0x0.top/font-awesome.min.css">
@@ -208,13 +208,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://mail.ding0x0.top/pic_7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://mail.ding0x0.top/pic_5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        socket编程学习
+                        socket编程学习笔记
                     </div>
                 </div>
             </div>
@@ -356,14 +356,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        467
+                        568
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -506,6 +506,34 @@ thread_list <span class="token operator">=</span> <span class="token punctuation
 <span class="token keyword">for</span> thread <span class="token keyword">in</span> thread_list<span class="token punctuation">:</span>
     thread<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
 thread<span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h2 id="socket发送http请求"><a href="#socket发送http请求" class="headerlink" title="socket发送http请求"></a>socket发送http请求</h2><pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 引入urllib 只是为了解析url方便，也可以手写</span>
+<span class="token keyword">from</span> urllib<span class="token punctuation">.</span>parse <span class="token keyword">import</span> urlparse
+<span class="token keyword">import</span> socket
+
+<span class="token keyword">def</span> <span class="token function">request</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    url <span class="token operator">=</span> urlparse<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+    host <span class="token operator">=</span> url<span class="token punctuation">.</span>netloc
+    path <span class="token operator">=</span> url<span class="token punctuation">.</span>path
+    <span class="token keyword">if</span> path <span class="token operator">==</span> <span class="token string">""</span><span class="token punctuation">:</span>
+        path <span class="token operator">=</span> <span class="token string">"/"</span>
+
+    client <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+    client<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>host<span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    reques_header <span class="token operator">=</span> <span class="token string">"GET {} HTTP/1.1\r\nHost: {}\r\nConnection: close\r\n\r\n"</span><span class="token punctuation">.</span>format<span class="token punctuation">(</span>path<span class="token punctuation">,</span> host<span class="token punctuation">)</span>
+    client<span class="token punctuation">.</span>send<span class="token punctuation">(</span>reques_header<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    d <span class="token operator">=</span> b<span class="token string">""</span>
+
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        data <span class="token operator">=</span> client<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> data<span class="token punctuation">:</span>
+            d <span class="token operator">+=</span> data
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    request<span class="token punctuation">(</span><span class="token string">"http://www.baidu.com"</span><span class="token punctuation">)</span></code></pre>
 
             </div>
             <hr/>
@@ -664,7 +692,7 @@ thread<span class="token punctuation">.</span>join<span class="token punctuation
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《socket编程学习》
+                    《socket编程学习笔记》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/27/socket-bian-cheng/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -706,30 +734,29 @@ thread<span class="token punctuation">.</span>join<span class="token punctuation
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/07/27/socket-bian-cheng/">
+                <a href="/2019/07/28/redis/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_7.jpg" class="responsive-img" alt="socket编程学习">
+                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="redis学习笔记">
                         
-                        <span class="card-title">socket编程学习</span>
+                        <span class="card-title">redis学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            python socket编程学习笔记
+                            redis学习笔记
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-27
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-28
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -742,12 +769,11 @@ thread<span class="token punctuation">.</span>join<span class="token punctuation
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Python/" target="_blank">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/redis/" target="_blank">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
                 </div>
@@ -917,7 +943,7 @@ thread<span class="token punctuation">.</span>join<span class="token punctuation
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">11.1k</span>
+                <span class="white-color">12k</span>
             
 
             

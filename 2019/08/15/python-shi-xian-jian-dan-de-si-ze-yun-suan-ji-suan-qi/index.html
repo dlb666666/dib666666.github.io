@@ -4,10 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux ssh, 沉梦昂志">
-    <meta name="description" content="Linux ssh基本配置环境为 Ubuntu16.04
-apt-get install sshopen-serverUbuntu默认安装了openssh-client。如果没有开启22端口，可以用iptables开启
-iptables -">
+    <meta name="keywords" content="python实现计算器, 沉梦昂志">
+    <meta name="description" content="用python实现一个简单的计算器学c的时候最后要做一个可以有优先级运算的计算器，当时没做出来，而且c也不学了，但是还是想写一个弥补遗憾，
+import re
+import sys
+
+def get_list(calc_str):
+    ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +18,7 @@ iptables -">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Linux ssh | 沉梦昂志</title>
+    <title>python实现计算器 | 沉梦昂志</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://mail.ding0x0.top/font-awesome.min.css">
@@ -205,7 +208,7 @@ iptables -">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Linux ssh
+                        python实现计算器
                     </div>
                 </div>
             </div>
@@ -316,8 +319,8 @@ iptables -">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Linux/" target="_blank">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/Python/" target="_blank">
+                                <span class="chip bg-color">Python</span>
                             </a>
                         
                     </div>
@@ -328,8 +331,8 @@ iptables -">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/总结/" class="post-category" target="_blank">
-                                总结
+                            <a href="/categories/笔记/" class="post-category" target="_blank">
+                                笔记
                             </a>
                         
                     </div>
@@ -340,21 +343,21 @@ iptables -">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-07-12
+                    2019-08-15
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        468
+                        410
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        1 分
                     </div>
                     
                 
@@ -370,49 +373,103 @@ iptables -">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Linux-ssh"><a href="#Linux-ssh" class="headerlink" title="Linux ssh"></a>Linux ssh</h1><h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><p>环境为 Ubuntu16.04</p>
-<pre><code>apt-get install sshopen-server</code></pre><p>Ubuntu默认安装了<code>openssh-client</code>。<br>如果没有开启<code>22</code>端口，可以用iptables开启</p>
-<pre class=" language-sh"><code class="language-sh">iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT</code></pre>
-<p>开启ssh</p>
-<pre><code>service ssh start</code></pre><h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><pre><code>ssh username@host #输入密码登陆远程主机
-ssh -i id_rsa username@host #指定你的私钥免密登陆
-ssh -p 4444 username@host #指定ssh端口</code></pre><p>设置免密登陆</p>
-<ol>
-<li>生成你的密钥对 <code>ssh-keygen</code></li>
-</ol>
-<pre class=" language-shell"><code class="language-shell">root@ding:/etc/ssh# ssh-keygen #生成密钥对
-Generating public/private rsa key pair.
-Enter file in which to save the key (/root/.ssh/id_rsa): #指定你的保存路径默认为 /yourhome/.ssh/id_rsa
-Enter passphrase (empty for no passphrase): #输入私钥密码，以后么此时用都会提示需要密码，回车表示不设置
-Enter same passphrase again:
-Your identification has been saved in /root/.ssh/id_rsa.
-Your public key has been saved in /root/.ssh/id_rsa.pub.
-The key fingerprint is:
-SHA256:UNI6mAQaEiJz8jNXEUMQjFbEciHnwojee0nd6q5DDSE root@ding
-The key's randomart image is:
-+---[RSA 2048]----+
-|O.+BB=B+.        |
-|=X+E=o +.        |
-|+.*++oo.         |
-|. .=o.+..        |
-| . . .ooS.       |
-|    o....        |
-|   ..o .         |
-|    ...          |
-|     .+o         |
-+----[SHA256]-----+</code></pre>
-<p>如果目录下存在同名密钥文件，会提示你是否覆盖，覆盖了可能导致密钥丢失</p>
-<ol start="2">
-<li><p>利用 <code>ssh-copy-id</code>复制你的公钥到远程主机 </p>
-<pre class=" language-shell"><code class="language-shell">ssh-copy-id username@host #需要知道ssh密码，如果换了端口可以用-p指定</code></pre>
-<p>输入密码后即可复制到 用户的<code>.ssh</code>目录下<br>然后利用<code>ssh username@host</code>即可免密登陆</p>
-</li>
-<li><p>可能会出现的问题<br>权限设置不正确，首先要保证<code>authorized_keys</code>权限为<code>600</code>（公钥信息保存在这里），<code>.ssh</code>目录为<code>700</code>，如果出现错误<code>sign_and_send_pubkey: signing failed: agent refused operation</code>，权限设置，修改<code>/etc/ssh/sshd_config</code>的<code>PubkeyAuthentication yes</code>，表示支持公钥登陆，查看<code>AuthorizedKeysFile</code>是否是使用<code>authorized_keys</code>认证文件。如果都没问题，可能是需要制定私钥文件，可以使用ssh代理</p>
-<pre><code>eval &quot;$(ssh-agent -s)&quot;
-ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh</a>和<a href="https://www.zsythink.net/archives/2407" target="_blank" rel="noopener">ssh代理</a></p>
-</li>
-</ol>
+                <h1 id="用python实现一个简单的计算器"><a href="#用python实现一个简单的计算器" class="headerlink" title="用python实现一个简单的计算器"></a>用python实现一个简单的计算器</h1><p>学c的时候最后要做一个可以有优先级运算的计算器，当时没做出来，而且c也不学了，但是还是想写一个弥补遗憾，</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> re
+<span class="token keyword">import</span> sys
+
+<span class="token keyword">def</span> <span class="token function">get_list</span><span class="token punctuation">(</span>calc_str<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    用来分割数字和运算符
+    '''</span>
+    calc_str <span class="token operator">=</span> re<span class="token punctuation">.</span>split<span class="token punctuation">(</span>r<span class="token string">"(\D)"</span><span class="token punctuation">,</span>calc_str<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> index<span class="token punctuation">,</span> value <span class="token keyword">in</span> enumerate<span class="token punctuation">(</span>calc_str<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> value <span class="token operator">==</span> <span class="token string">''</span><span class="token punctuation">:</span>
+            calc_str<span class="token punctuation">.</span>pop<span class="token punctuation">(</span>index<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> calc_str
+
+<span class="token keyword">def</span> <span class="token function">is_number</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> item<span class="token punctuation">.</span>isdigit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">priority</span><span class="token punctuation">(</span>top<span class="token punctuation">,</span> now<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    规则， 判断是入栈还是计算
+    push 入符号栈
+    calc 计算后入数字栈
+    bihe 去括号
+    '''</span>
+    level1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"+"</span><span class="token punctuation">,</span><span class="token string">"-"</span><span class="token punctuation">]</span>
+    level2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"*"</span><span class="token punctuation">,</span><span class="token string">"/"</span><span class="token punctuation">]</span>
+    level3 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"("</span><span class="token punctuation">]</span>
+    level4 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">")"</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">if</span> top <span class="token keyword">in</span> level1<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> now <span class="token keyword">in</span> level2 <span class="token operator">or</span> now <span class="token keyword">in</span> level3<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">"push"</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">"calc"</span>
+    <span class="token keyword">elif</span> top <span class="token keyword">in</span> level2<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> now <span class="token keyword">in</span> level3<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">"push"</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">"calc"</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> now <span class="token keyword">in</span> level4<span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">"bihe"</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token string">"push"</span>
+
+<span class="token keyword">def</span> <span class="token function">calculale</span><span class="token punctuation">(</span>num1<span class="token punctuation">,</span>symbol<span class="token punctuation">,</span>num2<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    result <span class="token operator">=</span> str<span class="token punctuation">(</span>num1<span class="token punctuation">)</span> <span class="token operator">+</span> symbol <span class="token operator">+</span> str<span class="token punctuation">(</span>num2<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> eval<span class="token punctuation">(</span>result<span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">pop_append_stack</span><span class="token punctuation">(</span>number_stack<span class="token punctuation">,</span> symbol_stack<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''
+    用来求和后入栈
+    num2, num1 数字栈顶两个 num2后入栈的所以 num1 +-*/ num2
+    calc_symbol 栈顶运算
+    '''</span>
+    num2 <span class="token operator">=</span> number_stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    num1 <span class="token operator">=</span> number_stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    calc_symbol <span class="token operator">=</span> symbol_stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    number_stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>calculale<span class="token punctuation">(</span>num1<span class="token punctuation">,</span> calc_symbol<span class="token punctuation">,</span> num2<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    calc <span class="token operator">=</span> input<span class="token punctuation">(</span><span class="token string">"请输入你的式子:如1*2+(3*4)/2"</span><span class="token operator">+</span><span class="token string">"\n"</span><span class="token operator">+</span><span class="token string">"====>  "</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> len<span class="token punctuation">(</span>calc<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"请输入正确的式子"</span><span class="token punctuation">)</span>
+        sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+    calc_list <span class="token operator">=</span> get_list<span class="token punctuation">(</span>calc<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">#用列表来模拟栈 一个存运算符一个存数字</span>
+    number_stack<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    symbol_stack<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+    <span class="token keyword">for</span> now <span class="token keyword">in</span> calc_list<span class="token punctuation">:</span>
+        <span class="token keyword">if</span> is_number<span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            number_stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>now<span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> <span class="token operator">not</span> symbol_stack<span class="token punctuation">:</span> <span class="token comment" spellcheck="true"># 如果栈顶为空 直接入栈</span>
+                    symbol_stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>now<span class="token punctuation">)</span>
+                    <span class="token keyword">break</span>
+                top <span class="token operator">=</span> symbol_stack<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+                symbol <span class="token operator">=</span> priority<span class="token punctuation">(</span>top<span class="token punctuation">,</span> now<span class="token punctuation">)</span>
+                <span class="token keyword">if</span> symbol <span class="token operator">==</span> <span class="token string">"push"</span><span class="token punctuation">:</span>
+                    symbol_stack<span class="token punctuation">.</span>append<span class="token punctuation">(</span>now<span class="token punctuation">)</span>
+                    <span class="token keyword">break</span>
+                <span class="token keyword">elif</span> symbol <span class="token operator">==</span> <span class="token string">"calc"</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#求和后重新计算</span>
+                    pop_append_stack<span class="token punctuation">(</span>number_stack<span class="token punctuation">,</span> symbol_stack<span class="token punctuation">)</span>
+                <span class="token keyword">else</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#如果是遇到 ) 则弹出 (</span>
+                    symbol_stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token keyword">break</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> len<span class="token punctuation">(</span>symbol_stack<span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">2</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#如果最后栈底是+ - 栈顶是* / 会少计算一位这里做判断</span>
+            pop_append_stack<span class="token punctuation">(</span>number_stack<span class="token punctuation">,</span> symbol_stack<span class="token punctuation">)</span>
+        pop_append_stack<span class="token punctuation">(</span>number_stack<span class="token punctuation">,</span> symbol_stack<span class="token punctuation">)</span>
+    result <span class="token operator">=</span> number_stack<span class="token punctuation">.</span>pop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"结果为  "</span><span class="token operator">+</span>str<span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 
             </div>
             <hr/>
@@ -571,9 +628,9 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Linux ssh》
+                    《python实现计算器》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/07/12/ssh/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/15/python-shi-xian-jian-dan-de-si-ze-yun-suan-ji-suan-qi/" property="cc:attributionName"
                rel="cc:attributionURL">
                 ding
             </a> 采用
@@ -613,50 +670,48 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/07/14/billu-b0x-ba-ji-shen-tou/">
+                <a href="/2019/08/15/python-shi-xian-jian-dan-de-si-ze-yun-suan-ji-suan-qi/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="Billu_b0x靶机渗透">
+                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="python实现计算器">
                         
-                        <span class="card-title">Billu_b0x靶机渗透</span>
+                        <span class="card-title">python实现计算器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            用msfveno生成payload的时候没有提示始终是一个痛点，看网上的一篇教程解决了一部分问题，这篇写出我对payload代码提示的解决方案
+                            python实现一个简单的计算器
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/渗透测试/" class="post-category" target="_blank">
-                                    渗透测试
+                            <a href="/categories/笔记/" class="post-category" target="_blank">
+                                    笔记
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/渗透测试/" target="_blank">
-                        <span class="chip bg-color">渗透测试</span>
-                    </a>
-                    
-                    <a href="/tags/writeup/" target="_blank">
-                        <span class="chip bg-color">writeup</span>
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
                     </a>
                     
                 </div>
@@ -670,31 +725,31 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/11/msfveno-zai-zsh-xia-payload-wu-fa-bu-quan-jie-jue/">
+                <a href="/2019/07/28/redis/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="msfveno在zsh下payload无法补全解决">
+                        <img src="https://mail.ding0x0.top/pic_5.jpg" class="responsive-img" alt="redis学习笔记">
                         
-                        <span class="card-title">msfveno在zsh下payload无法补全解决</span>
+                        <span class="card-title">redis学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            用msfveno生成payload的时候没有提示始终是一个痛点，看网上的一篇教程解决了一部分问题，这篇写出我对payload代码提示的解决方案
+                            redis学习笔记
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-11
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/不知道什么分类/" class="post-category" target="_blank">
-                                    不知道什么分类
+                            <a href="/categories/笔记/" class="post-category" target="_blank">
+                                    笔记
                                 </a>
                             
                             
@@ -704,8 +759,8 @@ ssh-add</code></pre><p>更多的可以参考<a href="https://www.zsythink.net/ar
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/工具/" target="_blank">
-                        <span class="chip bg-color">工具</span>
+                    <a href="/tags/redis/" target="_blank">
+                        <span class="chip bg-color">redis</span>
                     </a>
                     
                 </div>
