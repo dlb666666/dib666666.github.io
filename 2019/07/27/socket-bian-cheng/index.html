@@ -356,14 +356,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        568
+                        1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        5 分
                     </div>
                     
                 
@@ -534,6 +534,138 @@ thread<span class="token punctuation">.</span>join<span class="token punctuation
 
 <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
     request<span class="token punctuation">(</span><span class="token string">"http://www.baidu.com"</span><span class="token punctuation">)</span></code></pre>
+<h2 id="简单的netcat-python3）"><a href="#简单的netcat-python3）" class="headerlink" title="简单的netcat(python3）"></a>简单的netcat(python3）</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> argparse
+<span class="token keyword">import</span> socket
+<span class="token keyword">import</span> threading
+<span class="token keyword">import</span> subprocess
+<span class="token keyword">import</span> sys
+
+
+<span class="token keyword">def</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    args <span class="token operator">=</span> argparse<span class="token punctuation">.</span>ArgumentParser<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    args<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"-t"</span><span class="token punctuation">,</span> <span class="token string">"--target"</span><span class="token punctuation">,</span> help<span class="token operator">=</span><span class="token string">"target host"</span><span class="token punctuation">)</span>
+    args<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"-p"</span><span class="token punctuation">,</span> <span class="token string">"--port"</span><span class="token punctuation">,</span> required<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> help<span class="token operator">=</span><span class="token string">"target port"</span><span class="token punctuation">,</span> type<span class="token operator">=</span>int<span class="token punctuation">)</span>
+    args<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"-l"</span><span class="token punctuation">,</span> <span class="token string">"--listen"</span><span class="token punctuation">,</span> action<span class="token operator">=</span><span class="token string">"store_true"</span><span class="token punctuation">,</span> help<span class="token operator">=</span><span class="token string">"listen on [host]:[port] for incoming connections"</span><span class="token punctuation">)</span>
+    args<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"-c"</span><span class="token punctuation">,</span> <span class="token string">"--command"</span><span class="token punctuation">,</span> action<span class="token operator">=</span><span class="token string">"store_true"</span><span class="token punctuation">,</span> help<span class="token operator">=</span><span class="token string">"initialize a command shell"</span><span class="token punctuation">)</span>
+    args<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"-u"</span><span class="token punctuation">,</span> <span class="token string">"--upload"</span><span class="token punctuation">,</span> help<span class="token operator">=</span><span class="token string">"upon receiving connection upload a file and write to [destination]"</span><span class="token punctuation">)</span>
+    args<span class="token punctuation">.</span>add_argument<span class="token punctuation">(</span><span class="token string">"-e"</span><span class="token punctuation">,</span> <span class="token string">"--execute"</span><span class="token punctuation">,</span> help<span class="token operator">=</span><span class="token string">"execute the given file upon receiving a connection"</span><span class="token punctuation">)</span>
+    options <span class="token operator">=</span> args<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> options
+
+
+<span class="token keyword">def</span> <span class="token function">run_command</span><span class="token punctuation">(</span>command<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true">#创建一个子进程执行系统命令</span>
+        output <span class="token operator">=</span> subprocess<span class="token punctuation">.</span>check_output<span class="token punctuation">(</span>command<span class="token punctuation">,</span> stderr<span class="token operator">=</span>subprocess<span class="token punctuation">.</span>STDOUT<span class="token punctuation">,</span> shell<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        output <span class="token operator">=</span> <span class="token string">"Failed to execute command."</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> output
+
+
+<span class="token keyword">def</span> <span class="token function">client_handler</span><span class="token punctuation">(</span>client_socket<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment" spellcheck="true">#文件上传</span>
+    <span class="token keyword">if</span> options<span class="token punctuation">.</span>upload<span class="token punctuation">:</span>
+        file_butter <span class="token operator">=</span> <span class="token string">""</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            data <span class="token operator">=</span> client_socket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true">#遇到输入#EOF#就结束</span>
+            <span class="token keyword">if</span> <span class="token string">"#EOF#"</span> <span class="token keyword">in</span> data<span class="token punctuation">:</span>
+                client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"end upload"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token keyword">break</span>
+            client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"#"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            file_butter <span class="token operator">+=</span> data
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">with</span> open<span class="token punctuation">(</span>options<span class="token punctuation">.</span>upload<span class="token punctuation">,</span> <span class="token string">"wb"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>file_butter<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"save file success\n"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"save file falied\n"</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">finally</span><span class="token punctuation">:</span>
+            client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">#直接执行系统命令</span>
+    <span class="token keyword">if</span> options<span class="token punctuation">.</span>execute<span class="token punctuation">:</span>
+        output <span class="token operator">=</span> run_command<span class="token punctuation">(</span>options<span class="token punctuation">.</span>execute<span class="token punctuation">)</span>
+        client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>output<span class="token punctuation">)</span>
+
+    <span class="token comment" spellcheck="true">#返回一个shell 有一点输出bug</span>
+    <span class="token keyword">if</span> options<span class="token punctuation">.</span>command<span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+                client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">"&lt;BHP:#> "</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                cmd_buffer <span class="token operator">=</span> <span class="token string">""</span>
+                <span class="token keyword">while</span> <span class="token string">"\n"</span> <span class="token operator">not</span> <span class="token keyword">in</span> cmd_buffer<span class="token punctuation">:</span>
+                    <span class="token keyword">try</span><span class="token punctuation">:</span>
+                        cmd_buffer <span class="token operator">+=</span> client_socket<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span>
+                    <span class="token keyword">except</span><span class="token punctuation">:</span>
+                        client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+                        <span class="token keyword">break</span>
+                response <span class="token operator">=</span> run_command<span class="token punctuation">(</span>cmd_buffer<span class="token punctuation">)</span>
+                client_socket<span class="token punctuation">.</span>send<span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Failed"</span><span class="token punctuation">)</span>
+        <span class="token keyword">finally</span><span class="token punctuation">:</span>
+            client_socket<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment" spellcheck="true">#服务器循环，一直监听客户端接入</span>
+<span class="token keyword">def</span> <span class="token function">server_loop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">global</span> options
+    <span class="token keyword">if</span> <span class="token operator">not</span> options<span class="token punctuation">.</span>target<span class="token punctuation">:</span>
+        options<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token string">"0.0.0.0"</span>
+    server <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+    server<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>target<span class="token punctuation">,</span> options<span class="token punctuation">.</span>port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Listen %s:%s"</span> <span class="token operator">%</span> <span class="token punctuation">(</span>options<span class="token punctuation">.</span>target<span class="token punctuation">,</span> str<span class="token punctuation">(</span>options<span class="token punctuation">.</span>port<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    server<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        client_socket<span class="token punctuation">,</span> addr <span class="token operator">=</span> server<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        client_therad <span class="token operator">=</span> threading<span class="token punctuation">.</span>Thread<span class="token punctuation">(</span>target<span class="token operator">=</span>client_handler<span class="token punctuation">,</span> args<span class="token operator">=</span><span class="token punctuation">(</span>client_socket<span class="token punctuation">,</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        client_therad<span class="token punctuation">.</span>start<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment" spellcheck="true">#客户端发送数据</span>
+<span class="token keyword">def</span> <span class="token function">client_sender</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    client <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+    <span class="token keyword">try</span><span class="token punctuation">:</span>
+        client<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>target<span class="token punctuation">,</span>options<span class="token punctuation">.</span>port<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> len<span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            client<span class="token punctuation">.</span>send<span class="token punctuation">(</span>buffer<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+            recv_len <span class="token operator">=</span> <span class="token number">1</span>
+            response <span class="token operator">=</span> <span class="token string">""</span>
+            <span class="token keyword">while</span> recv_len<span class="token punctuation">:</span>
+                recv_len <span class="token operator">=</span> client<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4096</span><span class="token punctuation">)</span>
+                <span class="token keyword">try</span><span class="token punctuation">:</span>
+                    response <span class="token operator">+=</span> recv_len<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"utf8"</span><span class="token punctuation">)</span>
+                <span class="token keyword">except</span><span class="token punctuation">:</span>
+                    response <span class="token operator">+=</span> recv_len<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">"gbk"</span><span class="token punctuation">)</span>
+                <span class="token keyword">if</span> len<span class="token punctuation">(</span>recv_len<span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">4096</span><span class="token punctuation">:</span>
+                    <span class="token keyword">break</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>response <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">)</span>   
+            buffer <span class="token operator">=</span> input<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>
+            buffer <span class="token operator">+=</span> <span class="token string">"\n"</span>
+            client<span class="token punctuation">.</span>send<span class="token punctuation">(</span>buffer<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">except</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Failed to connect target"</span><span class="token punctuation">)</span>
+    <span class="token keyword">finally</span><span class="token punctuation">:</span>
+        client<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment" spellcheck="true">#主函数，判断监听还是连接</span>
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">global</span> options
+    options <span class="token operator">=</span> init<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token operator">not</span> options<span class="token punctuation">.</span>listen <span class="token operator">and</span> len<span class="token punctuation">(</span>options<span class="token punctuation">.</span>target<span class="token punctuation">)</span> <span class="token operator">and</span> options<span class="token punctuation">.</span>port<span class="token operator">></span><span class="token number">0</span><span class="token punctuation">:</span>
+        buffer <span class="token operator">=</span> input<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span>
+        client_sender<span class="token punctuation">(</span>buffer<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> options<span class="token punctuation">.</span>listen<span class="token punctuation">:</span>
+        server_loop<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 
             </div>
             <hr/>
@@ -943,7 +1075,7 @@ thread<span class="token punctuation">.</span>join<span class="token punctuation
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">12.3k</span>
+                <span class="white-color">12.7k</span>
             
 
             
