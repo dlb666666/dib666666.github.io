@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="python监听安全客文章更新情况, 沉梦昂志">
-    <meta name="description" content="import requests
-import os
-import smtplib
-from email.mime.text import MIMEText
+    <meta name="keywords" content="沉梦昂志">
+    <meta name="description" content="Vulnstack靶机链接
+拿到外网权限弱口令admin/123456登陆后台，修改模板getshell，没啥说的，主要学习windows渗透，以前也没接触过，看着wp一点点学
+进入内网
+查看3389是否开启
 
-server = &#34;smtp.163.com&#34; #163的smtp服务器
-user">
+未开启3389可以使用
+RE">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ user">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>python监听安全客文章更新情况 | 沉梦昂志</title>
+    <title>沉梦昂志</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="https://mail.ding0x0.top/font-awesome.min.css">
@@ -203,13 +203,13 @@ user">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://mail.ding0x0.top/pic_4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://mail.ding0x0.top/pic_3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        python监听安全客文章更新情况
+                        
                     </div>
                 </div>
             </div>
@@ -318,25 +318,12 @@ user">
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/Python/" target="_blank">
-                                <span class="chip bg-color">Python</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/笔记/" class="post-category" target="_blank">
-                                笔记
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -344,14 +331,14 @@ user">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-15
+                    2019-11-09
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        231
+                        206
                     </div>
                     
 
@@ -374,45 +361,29 @@ user">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre class=" language-python"><code class="language-python"><span class="token keyword">import</span> requests
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> smtplib
-<span class="token keyword">from</span> email<span class="token punctuation">.</span>mime<span class="token punctuation">.</span>text <span class="token keyword">import</span> MIMEText
-
-server <span class="token operator">=</span> <span class="token string">"smtp.163.com"</span> <span class="token comment" spellcheck="true">#163的smtp服务器</span>
-username <span class="token operator">=</span> <span class="token string">"你的163邮箱"</span>
-passwd <span class="token operator">=</span> <span class="token string">"163邮箱的授权码"</span>
-to <span class="token operator">=</span> <span class="token string">"发送的邮箱"</span> <span class="token comment" spellcheck="true">#这里使用139邮箱，可以收到免费的短信提示</span>
-
-
-<span class="token keyword">try</span><span class="token punctuation">:</span>
-    filename <span class="token operator">=</span> <span class="token string">'one.txt'</span> <span class="token comment" spellcheck="true">#将第一条内容保存到文本里，每次都和他比较</span>
-    url <span class="token operator">=</span> <span class="token string">"https://api.anquanke.com/data/v1/posts?size=10&amp;page=1&amp;category=knowledge"</span>
-    r <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    title <span class="token operator">=</span> r<span class="token punctuation">[</span><span class="token string">"data"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'title'</span><span class="token punctuation">]</span>
-    <span class="token keyword">with</span> open<span class="token punctuation">(</span>filename<span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-        first <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> title <span class="token operator">==</span> first<span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        <span class="token keyword">with</span> open<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>title<span class="token punctuation">)</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            smtp<span class="token operator">=</span>smtplib<span class="token punctuation">.</span>STMP_SSL<span class="token punctuation">(</span>server<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#注  Linux上要使用 STMP_SSL，windows上测试STMP可行</span>
-            smtp<span class="token punctuation">.</span>login<span class="token punctuation">(</span>username<span class="token punctuation">,</span> passwd<span class="token punctuation">)</span>
-            msg <span class="token operator">=</span> MIMEText<span class="token punctuation">(</span><span class="token string">"已更新"</span> <span class="token operator">+</span> title<span class="token punctuation">)</span>
-            msg<span class="token punctuation">[</span><span class="token string">"Subject"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"已更新"</span>
-            msg<span class="token punctuation">[</span><span class="token string">"From"</span><span class="token punctuation">]</span> <span class="token operator">=</span> username
-            msg<span class="token punctuation">[</span><span class="token string">"To"</span><span class="token punctuation">]</span> <span class="token operator">=</span> to
-            smtp<span class="token punctuation">.</span>sendmail<span class="token punctuation">(</span>username<span class="token punctuation">,</span> to<span class="token punctuation">,</span> msg<span class="token punctuation">.</span>as_string<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-            smtp<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token comment" spellcheck="true"># print("success")</span>
-        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"错误"</span><span class="token punctuation">,</span> e<span class="token punctuation">)</span>
-<span class="token keyword">except</span><span class="token punctuation">:</span>
-    msg <span class="token operator">=</span> <span class="token string">"error"</span></code></pre>
-<p>再vps上运行定时计划</p>
-<pre class=" language-sh"><code class="language-sh">*/10 * * * * /usr/bin/python3 /email.py > /root/test.log #建议使用绝对路径，每十分钟监测一次</code></pre>
+                <h1 id="Vulnstack"><a href="#Vulnstack" class="headerlink" title="Vulnstack"></a>Vulnstack</h1><p><a href="http://vulnstack.qiyuanxuetang.net/vuln/detail/2/" target="_blank" rel="noopener">靶机链接</a></p>
+<h2 id="拿到外网权限"><a href="#拿到外网权限" class="headerlink" title="拿到外网权限"></a>拿到外网权限</h2><p>弱口令admin/123456登陆后台，修改模板getshell，没啥说的，主要学习windows渗透，以前也没接触过，看着wp一点点学</p>
+<h2 id="进入内网"><a href="#进入内网" class="headerlink" title="进入内网"></a>进入内网</h2><p><img src="_v_images/20191109190755187_32333.png" alt="w1"></p>
+<p>查看3389是否开启</p>
+<p><img src="_v_images/20191109191015907_26436.png" alt="w2"></p>
+<p>未开启3389可以使用</p>
+<p><code>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</code> 开启3389</p>
+<p><img src="_v_images/20191109191738131_3823.png" alt="w3"></p>
+<p>创建用户</p>
+<p><code>net user ding0x0 dingOx0 /add</code></p>
+<p>加入管理员组</p>
+<p><code>net localgroup administrators ding0x0 /add</code></p>
+<p>连接3389发现不成功，查看防火墙入站状态</p>
+<p><code>netsh firewall show portopening</code></p>
+<p><img src="_v_images/20191109193705376_27054.png" alt="w4"></p>
+<p>第一条规则禁用了，添加一条规则即可开启防火墙。</p>
+<p><code>nnetsh advfirewall firewall add rule name=&quot;Remote Desktop&quot; protocol=TCP dir=in localport=3389 action=allow</code></p>
+<p>非服务版只允许一个用户远程连接</p>
+<p><img src="_v_images/20191109194333678_14301.png" alt="w6"></p>
+<p>使用mimikatz，这里我认为应该是维持权限的部分了？</p>
+<p><img src="_v_images/20191109200858030_30460.png" alt="w7"></p>
+<p><a href="https://3gstudent.github.io/3gstudent.github.io/渗透技巧-Windows系统远程桌面的多用户登录/" target="_blank" rel="noopener">参考</a></p>
+<p><a href="https://wooyun.js.org/drops/Mimikatz%20非官方指南和命令参考_Part3.html" target="_blank" rel="noopener">mimikatz</a></p>
 
             </div>
             <hr/>
@@ -571,11 +542,11 @@ to <span class="token operator">=</span> <span class="token string">"发送的�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《python监听安全客文章更新情况》
+                    《》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/15/python-jian-ting-an-quan-ke-wen-zhang-geng-xin-qing-kuang/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/09/vulnstack/" property="cc:attributionName"
                rel="cc:attributionURL">
-                ding
+                Ding
             </a> 采用
             <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
                 知识共享署名 4.0 国际许可协议
@@ -613,9 +584,10 @@ to <span class="token operator">=</span> <span class="token string">"发送的�
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/11/09/vulnstack/">
                     <div class="card-image">
@@ -639,9 +611,9 @@ RE
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -650,6 +622,7 @@ RE
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -660,19 +633,19 @@ RE
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/15/python-shi-xian-jian-dan-de-si-ze-yun-suan-ji-suan-qi/">
+                <a href="/2019/08/15/python-jian-ting-an-quan-ke-wen-zhang-geng-xin-qing-kuang/">
                     <div class="card-image">
                         
                         
-                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="python实现计算器">
+                        <img src="https://mail.ding0x0.top/pic_4.jpg" class="responsive-img" alt="python监听安全客文章更新情况">
                         
-                        <span class="card-title">python实现计算器</span>
+                        <span class="card-title">python监听安全客文章更新情况</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            python实现一个简单的计算器
+                            python监听安全客文章更新情况并发短信提示
                         
                     </div>
                     <div class="publish-info">
